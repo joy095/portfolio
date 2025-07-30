@@ -44,10 +44,19 @@
 								<img class="h-4 w-4" src="/icons/arrow-2.svg" alt="icon" />
 							</a>
 						</div>
+						<div class="flex flex-col gap-5">
+							<a
+								class="text-base md:text-lg lg:text-xl font-medium button overflow-hidden flex items-center gap-2"
+								target="_blank"
+								href="/sitemap.xml"
+								>Sitemap
+								<img class="h-4 w-4" src="/icons/arrow-2.svg" alt="icon" />
+							</a>
+						</div>
 					</div>
 					<p class="text-xl md:text-[1.375rem] font-medium leading-[1.5] md:w-[30%]">
-						I'm currently available for new work, let me know if you need a developer. I'd
-						love to talk about the next big thing!
+						I'm currently available for new work, let me know if you need a developer. I'd love to
+						talk about the next big thing!
 					</p>
 				</div>
 

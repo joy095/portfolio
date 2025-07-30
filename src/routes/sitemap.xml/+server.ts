@@ -4,14 +4,19 @@ export async function GET() {
     const site = 'https://joykarmakar.vercel.app';
 
     const works = await client.fetch(`*[_type == "work"]{ "slug": slug.current }`);
+    const blogs = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`);
 
     const urls = [
         { loc: `${site}/`, priority: 1.0 },
-        { loc: `${site}/about`, priority: 0.8 },
-        { loc: `${site}/contact`, priority: 0.8 },
+        { loc: `${site}/about`, priority: 0.9 },
+        { loc: `${site}/contact`, priority: 0.9 },
         ...works.map((w: { slug: string }) => ({
             loc: `${site}/works/${w.slug}`,
-            priority: 0.7
+            priority: 0.8
+        })),
+        ...blogs.map((w: { slug: string }) => ({
+            loc: `${site}/blog/${w.slug}`,
+            priority: 0.8
         }))
     ];
 
