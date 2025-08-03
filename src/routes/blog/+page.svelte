@@ -49,8 +49,6 @@
 		});
 		categories = ['All', ...Array.from(categorySet)];
 		showContent = true;
-		console.log('Posts:', data.posts);
-		console.log('Categories:', categories);
 		return () => {};
 	});
 
