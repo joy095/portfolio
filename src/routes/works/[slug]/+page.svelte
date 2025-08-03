@@ -65,12 +65,12 @@
 	<meta property="og:description" content={meta.description} />
 	<meta property="og:url" content={meta.url} />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content={urlFor(meta.image)} />
+	<meta property="og:image" content={urlFor(meta.image).url()} />
 
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={meta.title} />
 	<meta name="twitter:description" content={meta.description} />
-	<meta name="twitter:image" content={urlFor(meta.image)} />
+	<meta name="twitter:image" content={urlFor(meta.image).url()} />
 	<meta name="twitter:creator" content={meta.twitterHandle} />
 
 	<link rel="canonical" href={meta.url} />
@@ -133,7 +133,14 @@
 					<ParallaxScroll speed={0.2}>
 						<img
 							loading="lazy"
-							src={urlFor(work.image)}
+							srcset={`
+										${urlFor(work.image).width(480).auto('format').url()} 480w,
+										${urlFor(work.image).width(768).auto('format').url()} 768w,
+										${urlFor(work.image).width(1024).auto('format').url()} 1024w,
+										${urlFor(work.image).width(1440).auto('format').url()} 1440w
+									`}
+							src={urlFor(work.image).width(800).auto('format').url()}
+							sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 							alt={work.title}
 							class="w-full h-[35vh] md:h-[90vh] object-cover"
 						/>
@@ -152,7 +159,14 @@
 						<div class="bg-[#c3c2be] md:px-[10%] pt-[15%]">
 							<img
 								loading="lazy"
-								src={urlFor(work.image_2)}
+								srcset={`
+										${urlFor(work.image_2).width(480).auto('format').url()} 480w,
+										${urlFor(work.image_2).width(768).auto('format').url()} 768w,
+										${urlFor(work.image_2).width(1024).auto('format').url()} 1024w,
+										${urlFor(work.image_2).width(1440).auto('format').url()} 1440w
+									`}
+								src={urlFor(work.image_2).width(800).auto('format').url()}
+								sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 								alt={work.title}
 								class="mx-auto w-[85%] md:w-full min-h-[100vh] md:min-h-[500vh] object-cover"
 							/>
@@ -168,7 +182,14 @@
 							>
 								<img
 									loading="lazy"
-									src={urlFor(work.image_3)}
+									srcset={`
+										${urlFor(work.image_3).width(480).auto('format').url()} 480w,
+										${urlFor(work.image_3).width(768).auto('format').url()} 768w,
+										${urlFor(work.image_3).width(1024).auto('format').url()} 1024w,
+										${urlFor(work.image_3).width(1440).auto('format').url()} 1440w
+									`}
+									src={urlFor(work.image_3).width(800).auto('format').url()}
+									sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 									alt={work.title}
 									class="w-[85%] md:w-full max-w-full min-h-[50vh] max-h-full object-contain"
 								/>
@@ -182,7 +203,14 @@
 							>
 								<img
 									loading="lazy"
-									src={urlFor(work.image_4)}
+									srcset={`
+										${urlFor(work.image_4).width(480).auto('format').url()} 480w,
+										${urlFor(work.image_4).width(768).auto('format').url()} 768w,
+										${urlFor(work.image_4).width(1024).auto('format').url()} 1024w,
+										${urlFor(work.image_4).width(1440).auto('format').url()} 1440w
+									`}
+									src={urlFor(work.image).width(800).auto('format').url()}
+									sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 									alt={work.title}
 									class="w-[85%] md:w-full max-w-full min-h-[50vh] max-h-full object-contain"
 								/>
@@ -197,7 +225,14 @@
 						>
 							<img
 								loading="lazy"
-								src={urlFor(work.image_5)}
+								srcset={`
+										${urlFor(work.image_5).width(480).auto('format').url()} 480w,
+										${urlFor(work.image_5).width(768).auto('format').url()} 768w,
+										${urlFor(work.image_5).width(1024).auto('format').url()} 1024w,
+										${urlFor(work.image_5).width(1440).auto('format').url()} 1440w
+									`}
+								src={urlFor(work.image_5).width(800).auto('format').url()}
+								sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 								alt={work.title}
 								class="w-[85%] md:w-full max-w-full min-h-[50vh] max-h-full object-contain"
 							/>
@@ -242,7 +277,14 @@
 						<div class="banner-wrap">
 							<RevealImage
 								className="project-banner"
-								src={urlFor(nextWork.image)}
+								srcset={`
+										${urlFor(nextWork.image).width(480).auto('format').url()} 480w,
+										${urlFor(nextWork.image).width(768).auto('format').url()} 768w,
+										${urlFor(nextWork.image).width(1024).auto('format').url()} 1024w,
+										${urlFor(nextWork.image).width(1440).auto('format').url()} 1440w
+									`}
+								src={urlFor(nextWork.image).width(800).auto('format').url()}
+								sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 								alt={nextWork.title}
 								revealOptions={{
 									duration: 1

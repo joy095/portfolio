@@ -99,7 +99,14 @@
 				{#if data.post.mainImage?.asset}
 					<div class="hero-image" in:fade={{ duration: 1000 }}>
 						<img
-							src={urlFor(data.post.mainImage).width(1200).url()}
+							srcset={`
+										${urlFor(data.post.mainImage).width(480).auto('format').url()} 480w,
+										${urlFor(data.post.mainImage).width(768).auto('format').url()} 768w,
+										${urlFor(data.post.mainImage).width(1024).auto('format').url()} 1024w,
+										${urlFor(data.post.mainImage).width(1440).auto('format').url()} 1440w
+									`}
+							src={urlFor(data.post.mainImage).width(800).auto('format').url()}
+							sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 							alt={data.post.mainImage.alt || data.post.title || 'Post Image'}
 							class="w-full h-auto object-cover rounded-xl shadow-lg"
 						/>

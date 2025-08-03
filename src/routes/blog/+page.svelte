@@ -155,7 +155,7 @@
 							{#if post.mainImage?.asset}
 								<div class="card-image">
 									<img
-										src={urlFor(post.mainImage).width(600).url()}
+										src={urlFor(post.mainImage).width(400).url()}
 										alt={post.mainImage.alt || post.title || 'Blog Image'}
 										class="w-full h-full object-cover rounded-lg"
 									/>

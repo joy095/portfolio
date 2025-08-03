@@ -10,6 +10,9 @@
 		color?: string;
 		delay?: number;
 	} = {};
+
+	export let srcset: string = '';
+	export let sizes: string = '';
 </script>
 
 <div class="reveal-wrapper {className}" use:useImageReveal={revealOptions}>

@@ -1,7 +1,7 @@
 import { createClient } from '@sanity/client';
 import type { SanityClient } from '@sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
-import type { SanityImage } from './types/post';
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 export const client: SanityClient = createClient({
 	projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
@@ -12,8 +12,8 @@ export const client: SanityClient = createClient({
 
 const builder = imageUrlBuilder(client);
 
-export function urlFor(source: SanityImage): string {
-	return builder.image(source).url();
+export function urlFor(source: SanityImageSource) {
+	return builder.image(source);
 }
 
 export async function getWorkBySlug(slug: string) {

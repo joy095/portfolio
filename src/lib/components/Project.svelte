@@ -91,7 +91,14 @@
 							<div class="banner-wrap">
 								<RevealImage
 									className="project-banner"
-									src={urlFor(post.image)}
+									srcset={`
+										${urlFor(post.image).width(480).auto('format').url()} 480w,
+										${urlFor(post.image).width(768).auto('format').url()} 768w,
+										${urlFor(post.image).width(1024).auto('format').url()} 1024w,
+										${urlFor(post.image).width(1440).auto('format').url()} 1440w
+									`}
+									sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
+									src={urlFor(post.image).width(800).auto('format').url()}
 									alt={post.title}
 									revealOptions={{
 										duration: 1,
