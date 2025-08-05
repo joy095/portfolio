@@ -66,7 +66,10 @@
 <svelte:head>
 	<title>{data.title || 'Blog Post'}</title>
 	<meta name="description" content={data.description || 'Read our latest blog post'} />
-	<meta property="og:title" content={data.title || 'Blog Post'} />
+	<meta
+		property="og:title"
+		content={`Joy Karmakar - ${data.title}` || 'Joy Karmakar - Blog Post'}
+	/>
 	<meta property="og:description" content={data.description || 'Read our latest blog post'} />
 	<meta property="og:url" content={data.url || ''} />
 	<meta property="og:image" content={data.image || ''} />

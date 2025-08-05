@@ -60,7 +60,7 @@
 </script>
 
 <svelte:head>
-	<title>Software Engineering Blog</title>
+	<title>Joy karmakar - Blog</title>
 	<meta
 		name="description"
 		content="Explore our latest software engineering insights, tutorials, and in-depth articles."
