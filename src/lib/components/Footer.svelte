@@ -32,7 +32,7 @@
 								target="_blank"
 								href="https://www.linkedin.com/in/joy-karmakar-cooch-behar"
 								>Linkdin
-								<img class="h-4 w-4" src="/icons/arrow-2.svg" alt="icon" />
+								<enhanced:img class="h-4 w-4" src="/static/icons/arrow-2.svg" alt="icon" />
 							</a>
 						</div>
 						<div class="flex flex-col gap-5">
@@ -41,7 +41,7 @@
 								target="_blank"
 								href="https://github.com/joy095"
 								>Github
-								<img class="h-4 w-4" src="/icons/arrow-2.svg" alt="icon" />
+								<enhanced:img class="h-4 w-4" src="/static/icons/arrow-2.svg" alt="icon" />
 							</a>
 						</div>
 						<div class="flex flex-col gap-5">
@@ -50,7 +50,7 @@
 								target="_blank"
 								href="/sitemap.xml"
 								>Sitemap
-								<img class="h-4 w-4" src="/icons/arrow-2.svg" alt="icon" />
+								<enhanced:img class="h-4 w-4" src="/static/icons/arrow-2.svg" alt="icon" />
 							</a>
 						</div>
 					</div>

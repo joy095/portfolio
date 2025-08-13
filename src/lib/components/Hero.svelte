@@ -5,7 +5,6 @@
 	import { fly } from 'svelte/transition';
 	import StaggerText from './StaggerText.svelte';
 	import { inView } from '$lib/actions/inView';
-	import { headerAnimationComplete } from '$lib/stores/store';
 
 	let text = `A showcase of web applications and backend systems I’ve developed using modern tools like Go, PostgreSQL, Redis, SvelteKit, React, Node.js, and more — all focused on speed, scalability, and great user experience.`;
 

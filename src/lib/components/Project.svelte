@@ -63,7 +63,12 @@
 				class="text-lg font-medium flex items-center gap-1"
 			>
 				Scroll
-				<img loading="lazy" src="/icons/arrow.svg" alt="arrow" class="animate-bounce h-4 w-4" />
+				<enhanced:img
+					loading="lazy"
+					src="/static/icons/arrow.svg"
+					alt="arrow"
+					class="animate-bounce h-4 w-4"
+				/>
 			</a>
 		</div>
 		<div id="project"></div>

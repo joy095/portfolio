@@ -148,9 +148,9 @@
 				<div
 					class="relative rounded-xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105"
 				>
-					<img
+					<enhanced:img
 						loading="lazy"
-						src="my_image.webp"
+						src="/static/my_image.webp"
 						alt="Joy Karmakar's professional headshot**, a web developer based in west bengal, india"
 						class="w-full h-auto object-cover rounded-xl"
 					/>

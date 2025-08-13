@@ -124,7 +124,7 @@
 						in:fly={{ y: 20, duration: 600, delay: 500 }}
 					>
 						View live website
-						<img class="h-4 w-4" src="/icons/arrow-black.svg" alt="icon" />
+						<enhanced:img class="h-4 w-4" src="/static/icons/arrow-black.svg" alt="icon" />
 					</a>
 				{/if}
 			</div>
