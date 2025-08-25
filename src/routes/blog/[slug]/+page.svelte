@@ -222,7 +222,7 @@
 	.hero {
 		position: relative;
 		margin-bottom: 4rem;
-		margin-top: 10rem;
+		margin-top: 15vh;
 	}
 	.hero-image {
 		position: relative;
@@ -366,9 +366,7 @@
 		.hero-title {
 			font-size: 2.5rem;
 		}
-		.hero-image {
-			height: 40vh;
-		}
+
 		.sidebar {
 			position: static;
 		}
