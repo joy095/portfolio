@@ -256,20 +256,23 @@
 			</div>
 
 			<div class="post-container">
-				<div class="post-card translate-y-10 transition-all duration-1000 ease-out">
+				<a
+					href={`/works/${nextWork?.slug}`}
+					class="post-card translate-y-10 transition-all duration-1000 ease-out"
+					data-sveltekit-reload
+				>
 					<div class="flex flex-col mt-8 md:mt-0 justify-between gap-4 md:gap-5 md:w-[30%] pr-5">
 						<h2 class="title">{nextWork.title}</h2>
 						<div class="flex flex-col gap-4 md:gap-6">
 							{#if nextWork.description}
 								<p class="font-medium text-xl tracking-[.8]">{nextWork.description}</p>
 							{/if}
-							<a
+							<button
 								class="btn"
-								href={`/works/${nextWork?.slug}`}
 								on:click={(e) => nextWork && handleWorkNavigation(nextWork.slug, e)}
 								on:click={scrollToTop}
 								on:keydown={(e) => e.key === 'Enter' && scrollToTop()}
-								in:fly={{ y: 20, duration: 600, delay: 700 }}>View</a
+								in:fly={{ y: 20, duration: 600, delay: 700 }}>View</button
 							>
 						</div>
 					</div>
@@ -292,7 +295,7 @@
 							/>
 						</div>
 					{/if}
-				</div>
+				</a>
 			</div>
 		</div>
 	{/if}

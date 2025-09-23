@@ -79,9 +79,11 @@
 		{:else if posts && posts.length > 0}
 			<div class="post-container">
 				{#each posts as post, index (post._id)}
-					<div
+					<a
 						class="post-card opacity-0 translate-y-10 transition-all duration-1000 ease-out"
 						use:intersectionObserver={index}
+						href="works/{post.slug}"
+						data-sveltekit-reload
 					>
 						<div class="flex flex-col mt-8 md:mt-0 justify-between gap-4 md:gap-5 md:w-[30%] pr-5">
 							<h2 class="title">{post.title}</h2>
@@ -89,7 +91,7 @@
 								{#if post.description}
 									<p class="font-medium text-xl tracking-[.8]">{post.description}</p>
 								{/if}
-								<a class="btn" href="works/{post.slug}">View</a>
+								<button class="btn">View</button>
 							</div>
 						</div>
 						{#if post.image}
@@ -112,7 +114,7 @@
 								/>
 							</div>
 						{/if}
-					</div>
+					</a>
 				{/each}
 			</div>
 		{:else}
