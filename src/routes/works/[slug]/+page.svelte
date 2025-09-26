@@ -130,21 +130,23 @@
 			</div>
 			<div class="flex flex-col gap-5">
 				{#if work.image}
-					<ParallaxScroll speed={0.2}>
-						<img
-							loading="lazy"
-							srcset={`
+					<div class="h-[35vh] md:h-[90vh]">
+						<ParallaxScroll speed={0.2}>
+							<img
+								loading="lazy"
+								srcset={`
 										${urlFor(work.image).width(480).auto('format').url()} 480w,
 										${urlFor(work.image).width(768).auto('format').url()} 768w,
 										${urlFor(work.image).width(1024).auto('format').url()} 1024w,
 										${urlFor(work.image).width(1440).auto('format').url()} 1440w
-									`}
-							src={urlFor(work.image).width(800).auto('format').url()}
-							sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
-							alt={work.title}
-							class="w-full h-[35vh] md:h-[90vh] object-cover"
-						/>
-					</ParallaxScroll>
+										`}
+								src={urlFor(work.image).width(800).auto('format').url()}
+								sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
+								alt={work.title}
+								class="w-full h-[35vh] md:h-[90vh] object-cover"
+							/>
+						</ParallaxScroll>
+					</div>
 				{/if}
 
 				{#if work.info}
