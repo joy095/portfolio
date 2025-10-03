@@ -110,7 +110,7 @@
 				class="font-display text-[3.5rem] md:text-[5rem] leading-tight tracking-tight"
 				in:fly={{ duration: 800, y: 20 }}
 			>
-				Software Engineering Blog
+				Blog
 			</h1>
 			<p
 				class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mt-4"

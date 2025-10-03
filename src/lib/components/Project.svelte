@@ -55,22 +55,6 @@
 		on:inview={() => (contentVisible = true)}
 		class="container-auto"
 	>
-		<div class="flex justify-between border-b-2 border-black/80 pb-3">
-			<p class="font-medium text-2xl leading-[1.6] tracking-tighter">Featured work</p>
-			<a
-				on:click={(e) => smoothScrollToSection(e, '#project')}
-				href="#project"
-				class="text-lg font-medium flex items-center gap-1"
-			>
-				Scroll
-				<enhanced:img
-					loading="lazy"
-					src="/static/icons/arrow.svg"
-					alt="arrow"
-					class="animate-bounce h-4 w-4"
-				/>
-			</a>
-		</div>
 		<div id="project"></div>
 		{#if error}
 			<div class="error">
@@ -91,7 +75,7 @@
 								{#if post.description}
 									<p class="font-medium text-xl tracking-[.8]">{post.description}</p>
 								{/if}
-								<button class="btn">View</button>
+								<button class="btn cursor-pointer">View</button>
 							</div>
 						</div>
 						{#if post.image}

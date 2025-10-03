@@ -4,7 +4,7 @@ import type { Work } from '$lib/types/post';
 
 export async function load() {
     try {
-        const postsQuery = `*[_type == "work"] | order(serial asc)[0..3] {
+        const postsQuery = `*[_type == "work"] | order(serial asc) {
             _id,
             title,
             "slug": slug.current,
@@ -20,16 +20,16 @@ export async function load() {
         const posts: Work[] = await client.fetch<Work[]>(postsQuery);
 
         return {
-            posts
+            posts: posts
         };
     } catch (err) {
         console.error('Error fetching posts for main page SSG:', err);
         return {
             status: 500,
             error: new Error('Failed to load posts.'),
-            posts: []
+            posts: [] // Always return posts as an array to avoid type issues in the component
         };
     }
 }
 
-export const prerender = true;
+export const prerender = true; // Crucial for SSG
