@@ -51,6 +51,8 @@
 	</div>
 </div>
 
+<div id="project"></div>
+
 <Project {posts} {error} />
 
 <div class="container-auto text-center mt-28">
