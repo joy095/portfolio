@@ -55,7 +55,7 @@
 		on:inview={() => (contentVisible = true)}
 		class="container-auto"
 	>
-		<div id="project"></div>
+		<!-- <div id="project"></div> -->
 		{#if error}
 			<div class="error">
 				Error: {error.message}
