@@ -1,8 +1,16 @@
 <script>
 	import Project from '$lib/components/Project.svelte';
+	import { fly } from 'svelte/transition';
+	import { inView } from '$lib/actions/inView.js';
 
 	export let data;
 	const { posts, error, meta } = data;
+
+	let showContact = false;
+
+	setTimeout(() => {
+		showContact = true;
+	}, 1000);
 </script>
 
 <svelte:head>
@@ -24,4 +32,14 @@
 	<meta name="twitter:creator" content={meta.twitterHandle} />
 </svelte:head>
 
+<div use:inView={{ threshold: 0.2 }} on:inview={() => (showContact = true)} class="container-auto">
+	<h1
+		class="mt-40 font-semibold text-[5rem] md:text-[6.875rem] tracking-tighter leading-tight"
+		in:fly={{ duration: 800, y: 50 }}
+	>
+		Works
+	</h1>
+
+	<div class="border-t border-black"></div>
+</div>
 <Project {posts} {error} />

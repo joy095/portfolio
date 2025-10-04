@@ -10,6 +10,7 @@ export async function GET() {
         { loc: `${site}/`, priority: 1.0 },
         { loc: `${site}/about`, priority: 0.9 },
         { loc: `${site}/contact`, priority: 0.9 },
+        { loc: `${site}/works`, priority: 0.8 },
         ...works.map((w: { slug: string }) => ({
             loc: `${site}/works/${w.slug}`,
             priority: 0.8
