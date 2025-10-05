@@ -10,6 +10,11 @@
 	import { headerAnimationComplete } from '$lib/stores/store';
 	import Footer from '$lib/components/Footer.svelte';
 
+	import { dev } from '$app/environment';
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+
+	injectAnalytics({ mode: dev ? 'development' : 'production' });
+
 	let numberOfLines = 11;
 	let showSplash = false; // Initialize to false by default on SSR
 	let isContentVisible = false; // Initialize to false to hide content initially
