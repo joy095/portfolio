@@ -119,7 +119,7 @@
 				<div class="mt-12">
 					<a
 						target="_blank"
-						href="/Joy's_resume.pdf"
+						href="https://docs.google.com/document/d/1kJOkoKP6tXdgbi35ICFMcBUJbcnZHAQ33CY5g7fvnt4/edit?usp=sharing"
 						class="inline-flex items-center px-8 py-4 bg-gray-900 text-white text-lg font-medium rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-300"
 					>
 						<svg

@@ -2,15 +2,15 @@
 	"name": "protfolio",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build && npm run package",
-		"preview": "vite preview",
-		"package": "svelte-kit sync && svelte-package && publint",
-		"prepublishOnly": "npm run package",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "eslint . && prettier --check .",
-		"format": "prettier --write ."
+		"dev": "bunx vite dev",
+		"build": "bunx vite build && bun run package",
+		"preview": "bunx vite preview",
+		"package": "bunx svelte-kit sync && bunx svelte-package && bunx publint",
+		"prepublishOnly": "bun run package",
+		"check": "bunx svelte-kit sync && bunx svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "bunx svelte-kit sync && bunx svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "bunx eslint . && bunx prettier --check .",
+		"format": "bunx prettier --write ."
 	},
 	"files": [
 		"dist",
