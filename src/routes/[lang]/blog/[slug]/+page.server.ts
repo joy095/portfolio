@@ -1,27 +1,10 @@
-// src/routes/blog/[slug]/+page.server.ts
 import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity';
 import { createImageUrlBuilder } from '@sanity/image-url';
 import { error } from '@sveltejs/kit';
 
-// Enable SSG
-export const prerender = true;
-
-// Define all possible slugs for pre-rendering
-export async function entries() {
-	const query = `*[_type == "post" && !(_id in path('drafts.**'))] {
-    slug
-  }`;
-	try {
-		const posts = await client.fetch(query);
-		return posts.map((post: { slug: { current: string } }) => ({
-			slug: post.slug.current
-		}));
-	} catch (err) {
-		console.error('Error fetching slugs:', err);
-		return [];
-	}
-}
+// DO NOT prerender this - it has dynamic content
+export const prerender = false;
 
 const builder = createImageUrlBuilder(client);
 
@@ -58,10 +41,11 @@ export const load: PageServerLoad = async ({ params }) => {
 
 		return {
 			post,
+			lang: params.lang,
 			title: post.title || 'Untitled Post',
 			description:
 				post.seo?.metaDescription || `Read "${post.title || 'Untitled Post'}" on our blog`,
-			url: `https://joykarmakar.vercel.app/blog/${params.slug}`,
+			url: `https://joykarmakar.vercel.app/${params.lang}/blog/${params.slug}`,
 			image: post.mainImage
 				? _urlFor(post.mainImage).width(1200).url()
 				: 'https://joykarmakar.vercel.app/logo.webp'

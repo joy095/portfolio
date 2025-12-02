@@ -1,6 +1,21 @@
 import type { Actions } from '@sveltejs/kit';
 import { fail } from '@sveltejs/kit';
 import { sendContactMail } from '$lib/server/sendMail';
+import { locales } from '$lib/paraglide/runtime';
+import type { PageServerLoad } from './$types';
+
+export const prerender = false;
+
+// Tell SvelteKit which lang values are valid
+export function entries() {
+	return locales.map((lang) => ({ lang }));
+}
+
+export const load: PageServerLoad = async ({ params }) => {
+	return {
+		lang: params.lang
+	};
+};
 
 export const actions: Actions = {
 	default: async ({ request }) => {

@@ -4,15 +4,18 @@ import { enhancedImages } from '@sveltejs/enhanced-img';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: vitePreprocess(),
-
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		prerender: {
+			handleHttpError: 'warn',
+			handleMissingId: 'warn',
+			handleUnseenRoutes: 'warn'
+		}
 	},
 	prerender: {
 		entries: ['*']
 	},
-	preprocess: [enhancedImages()]
+	preprocess: [enhancedImages(), vitePreprocess()]
 };
 
 export default config;

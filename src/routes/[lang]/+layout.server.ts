@@ -1,10 +1,9 @@
-// src/routes/[lang]/+layout.server.ts
 import { baseLocale } from '$lib/paraglide/runtime.js';
 import type { LayoutServerLoad } from './$types';
 import { client } from '$lib/sanity';
 import type { Work } from '$lib/types/post';
 
-export const prerender = false;
+export const prerender = true;
 
 export const load: LayoutServerLoad = async ({ params, cookies }) => {
 	const lang = params.lang ?? baseLocale;
@@ -31,7 +30,7 @@ export const load: LayoutServerLoad = async ({ params, cookies }) => {
 			image { asset->{ _id, url } },
 			description,
 			serial
-		}`;
+			}`;
 		posts = await client.fetch<Work[]>(postsQuery);
 	} catch (err) {
 		console.error('Error fetching posts', err);

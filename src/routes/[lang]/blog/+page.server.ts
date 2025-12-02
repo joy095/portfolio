@@ -2,11 +2,16 @@
 import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity';
 import { error } from '@sveltejs/kit';
+import { locales } from '$lib/paraglide/runtime';
 
 // Enable SSG by setting prerender to true
 export const prerender = true;
 
-export const load: PageServerLoad = async () => {
+export function entries() {
+	return locales.map((lang) => ({ lang }));
+}
+
+export const load: PageServerLoad = async ({ params }) => {
 	const query = `*[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc) {
     _id,
     title,
@@ -28,7 +33,7 @@ export const load: PageServerLoad = async () => {
 		if (!posts || posts.length === 0) {
 			return { posts: [] };
 		}
-		return { posts };
+		return { posts, lang: params.lang };
 	} catch (err) {
 		console.error('Fetch error:', err);
 		throw error(500, 'Failed to load posts');
