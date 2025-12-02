@@ -47,6 +47,6 @@ export async function getNextWork(slug: string, lang: string) {
 export async function getAllWorkSlugs(): Promise<string[]> {
 	const query = `*[_type == "work" && defined(slug.current)]{ "slug": slug.current }`;
 	const results = await client.fetch(query);
-	if (!Array.isArray(results)) throw new Error("Expected array from Sanity");
+	if (!Array.isArray(results)) throw new Error('Expected array from Sanity');
 	return results.map((item: { slug: string }) => item.slug);
 }

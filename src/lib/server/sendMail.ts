@@ -3,28 +3,28 @@ import * as env from '$env/static/private';
 
 // Define the interface for the contact form data
 interface ContactFormData {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-    phone?: string;
+	name: string;
+	email: string;
+	subject: string;
+	message: string;
+	phone?: string;
 }
 
 // Configure your SMTP transporter
 // Using env variables from $env/static/private
 const transporter = nodemailer.createTransport({
-    host: env.SMTP_HOST,
-    port: parseInt(env.SMTP_PORT || '465', 10),
-    secure: env.SMTP_PORT === '465' || env.SMTP_PORT === 'ssl', // true for 465 (SSL/TLS), false for other ports (like 587 with STARTTLS)
-    // If using port 587 with STARTTLS, you might need:
-    // secure: false,
-    // requireTLS: true,
-    debug: false, // Set to true during development to see detailed logs, false for production
-    logger: false, // Set to true during development to see detailed logs, false for production
-    auth: {
-        user: env.SMTP_USER,
-        pass: env.SMTP_PASS
-    }
+	host: env.SMTP_HOST,
+	port: parseInt(env.SMTP_PORT || '465', 10),
+	secure: env.SMTP_PORT === '465' || env.SMTP_PORT === 'ssl', // true for 465 (SSL/TLS), false for other ports (like 587 with STARTTLS)
+	// If using port 587 with STARTTLS, you might need:
+	// secure: false,
+	// requireTLS: true,
+	debug: false, // Set to true during development to see detailed logs, false for production
+	logger: false, // Set to true during development to see detailed logs, false for production
+	auth: {
+		user: env.SMTP_USER,
+		pass: env.SMTP_PASS
+	}
 });
 
 /**
@@ -32,9 +32,15 @@ const transporter = nodemailer.createTransport({
  * @param {ContactFormData} formData - The contact form data.
  * @returns {Promise<void>}
  */
-export async function sendContactMail({ name, email, subject, message, phone }: ContactFormData): Promise<void> {
-    // Basic text message for fallback (always good to have)
-    const textMessage = `New Contact Form Submission from Your Website:
+export async function sendContactMail({
+	name,
+	email,
+	subject,
+	message,
+	phone
+}: ContactFormData): Promise<void> {
+	// Basic text message for fallback (always good to have)
+	const textMessage = `New Contact Form Submission from Your Website:
 
 Name: ${name}
 Email: ${email}
@@ -47,8 +53,8 @@ ${message}
 Website: https://joykarmakar.vercel.app
 `;
 
-    // Premium HTML message with inline styles
-    const htmlMessage = `
+	// Premium HTML message with inline styles
+	const htmlMessage = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -153,19 +159,19 @@ Website: https://joykarmakar.vercel.app
     </html>
     `;
 
-    try {
-        const info = await transporter.sendMail({
-            from: `"${name}" <${email}>`,
-            to: env.CONTACT_RECEIVER_EMAIL, // Use env for SvelteKit
-            subject: `New Contact Form Message from ${name} - ${subject}`,
-            text: textMessage,
-            html: htmlMessage
-        });
+	try {
+		const info = await transporter.sendMail({
+			from: `"${name}" <${email}>`,
+			to: env.CONTACT_RECEIVER_EMAIL, // Use env for SvelteKit
+			subject: `New Contact Form Message from ${name} - ${subject}`,
+			text: textMessage,
+			html: htmlMessage
+		});
 
-        console.log('Contact email sent:', info.messageId);
-    } catch (error) {
-        console.error('Error sending contact email:', error);
-        // Re-throw the error so the calling function (SvelteKit action) can catch it
-        throw error;
-    }
+		console.log('Contact email sent:', info.messageId);
+	} catch (error) {
+		console.error('Error sending contact email:', error);
+		// Re-throw the error so the calling function (SvelteKit action) can catch it
+		throw error;
+	}
 }

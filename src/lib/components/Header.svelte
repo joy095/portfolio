@@ -7,6 +7,8 @@
 	import { inView } from '$lib/actions/inView';
 	import { locales } from '$lib/paraglide/runtime.js';
 
+	export let lang: string;
+
 	let currentTime: string;
 	let timezone: string;
 	let isVisible = false;
@@ -21,12 +23,6 @@
 	const toggle = () => (open = !open);
 
 	const close = () => (open = false);
-
-	const toggleMobileMenu = () => {
-		mobileMenuOpen = !mobileMenuOpen;
-	};
-
-	const closeMobileMenu = () => (mobileMenuOpen = false);
 
 	const handleSelect = (locale: string) => {
 		switchLanguage(locale);
@@ -80,51 +76,8 @@
 	};
 
 	// LANG HANDLING
-	let lang: string = 'en';
-	let pathWithoutLocale = '';
-	let homeHref = '/';
-	let aboutHref = '/';
-	let blogHref = '/';
-	let contactHref = '/';
-
-	const readCookieLocale = () => {
-		const cookie = document.cookie
-			.split(';')
-			.map((c) => c.trim())
-			.find((c) => c.startsWith('PARAGLIDE_LOCALE='));
-		if (!cookie) return null;
-		return cookie.substring('PARAGLIDE_LOCALE='.length);
-	};
-
-	const detectLocaleFromPath = (pathname: string) => {
-		const pattern = new RegExp(
-			`^/(${locales.map((l) => l.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})(?=/|$)`
-		);
-		const m = pathname.match(pattern);
-		return m ? m[1] : null;
-	};
-
-	const computePaths = () => {
-		const { pathname, search, hash } = window.location;
-		const detected = detectLocaleFromPath(pathname);
-		const cookieLocale = readCookieLocale();
-
-		lang = detected ?? cookieLocale ?? (locales && locales.length ? locales[0] : 'en');
-
-		const localePattern = new RegExp(
-			`^/(${locales.map((l) => l.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})(?=/|$)`
-		);
-		pathWithoutLocale = pathname.replace(localePattern, '') || '';
-
-		homeHref = `/${lang}`;
-		aboutHref = `/${lang}${pathWithoutLocale}${search}#about`;
-		blogHref = `/${lang}/blog${search}`;
-		contactHref = `/${lang}/contact${search}`;
-	};
 
 	onMount(() => {
-		computePaths();
-
 		const hash = window.location.hash;
 		if (hash) {
 			setTimeout(() => {
@@ -136,11 +89,8 @@
 		window.addEventListener('scroll', handleScroll);
 		headerAnimationComplete.set(true);
 
-		window.addEventListener('popstate', computePaths);
-
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
-			window.removeEventListener('popstate', computePaths);
 		};
 	});
 
@@ -187,8 +137,7 @@
 			<!-- Logo -->
 			<a
 				class="nav-links font-bold text-sm sm:text-base md:text-lg lg:text-xl flex gap-1 items-center flex-shrink-0"
-				href={homeHref}
-				on:click={(e) => smoothScrollToSection(e, '#hero')}
+				href="/{lang}"
 				in:fly={{ y: 20, duration: 800, delay: 0, opacity: 0 }}
 				on:mouseover={() => handleHover('home')}
 				on:focus={() => handleHover('home')}
@@ -202,7 +151,7 @@
 				<ul class="flex gap-4 lg:gap-8 font-semibold text-black/85 text-sm lg:text-lg">
 					<li class="nav-links" in:fly={{ y: 20, duration: 800, delay: 200, opacity: 0 }}>
 						<a
-							href="{homeHref}#about"
+							href="/{lang}/#about"
 							on:click={(e) => smoothScrollToSection(e, '#about')}
 							class="button overflow-hidden flex"
 							on:mouseover={() => handleHover('about')}
@@ -214,7 +163,7 @@
 					</li>
 					<li class="nav-links" in:fly={{ y: 20, duration: 800, delay: 400, opacity: 0 }}>
 						<a
-							href={blogHref}
+							href="/{lang}/blog"
 							class="button overflow-hidden flex"
 							on:mouseover={() => handleHover('blog')}
 							on:focus={() => handleHover('blog')}
@@ -225,7 +174,7 @@
 					</li>
 					<li class="nav-links" in:fly={{ y: 20, duration: 800, delay: 600, opacity: 0 }}>
 						<a
-							href={contactHref}
+							href="/{lang}/contact"
 							class="button overflow-hidden flex"
 							on:mouseover={() => handleHover('contact')}
 							on:focus={() => handleHover('contact')}
@@ -368,7 +317,7 @@
 					<ul class="space-y-1">
 						<li>
 							<a
-								href="{homeHref}#about"
+								href="/{lang}#about"
 								on:click={(e) => handleNavClick(e, '#about')}
 								class="block px-3 py-3 rounded-lg text-sm font-medium text-gray-800 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-transparent transition-all duration-200 flex items-center gap-2"
 							>
@@ -380,7 +329,7 @@
 						</li>
 						<li>
 							<a
-								href={blogHref}
+								href="/{lang}/blog"
 								on:click={(e) => handleNavClick(e)}
 								class="block px-3 py-3 rounded-lg text-sm font-medium text-gray-800 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-transparent transition-all duration-200 flex items-center gap-2"
 							>
@@ -392,7 +341,7 @@
 						</li>
 						<li>
 							<a
-								href={contactHref}
+								href="/{lang}/contact"
 								on:click={(e) => handleNavClick(e)}
 								class="block px-3 py-3 rounded-lg text-sm font-medium text-gray-800 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-transparent transition-all duration-200 flex items-center gap-2"
 							>

@@ -9,9 +9,7 @@ export async function entries() {
 		const slugs = await getAllWorkSlugs();
 		if (!Array.isArray(slugs)) throw new Error('Slugs should be an array');
 		const languages = ['en', 'de']; // Replace with your actual supported languages
-        return slugs.flatMap(slug => 
-            languages.map(lang => ({ lang, slug }))
-        );
+		return slugs.flatMap((slug) => languages.map((lang) => ({ lang, slug })));
 	} catch (err) {
 		console.error('Error fetching work slugs for prerender:', err);
 		return [];

@@ -7,7 +7,7 @@ import { error } from '@sveltejs/kit';
 export const prerender = true;
 
 export const load: PageServerLoad = async () => {
-  const query = `*[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc) {
+	const query = `*[_type == "post" && !(_id in path('drafts.**'))] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -23,14 +23,14 @@ export const load: PageServerLoad = async () => {
     }
   }`;
 
-  try {
-    const posts = await client.fetch(query);
-    if (!posts || posts.length === 0) {
-      return { posts: [] };
-    }
-    return { posts };
-  } catch (err) {
-    console.error('Fetch error:', err);
-    throw error(500, 'Failed to load posts');
-  }
+	try {
+		const posts = await client.fetch(query);
+		if (!posts || posts.length === 0) {
+			return { posts: [] };
+		}
+		return { posts };
+	} catch (err) {
+		console.error('Fetch error:', err);
+		throw error(500, 'Failed to load posts');
+	}
 };

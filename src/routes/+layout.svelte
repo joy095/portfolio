@@ -5,7 +5,6 @@
 	import { initializeLenis } from '$lib/scroll';
 	import '../app.css';
 
-	import Header from '$lib/components/Header.svelte';
 	import Cursor from '$lib/Cursor.svelte';
 	import { headerAnimationComplete } from '$lib/stores/store';
 	import Footer from '$lib/components/Footer.svelte';
@@ -51,7 +50,6 @@
 	{/each}
 </div>
 
-<Header />
 {#if isContentVisible}
 	<Cursor />
 	<Footer />

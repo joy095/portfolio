@@ -1,4 +1,3 @@
-<!-- src/routes/blog/+page.svelte -->
 <script lang="ts">
 	import { fly, fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
@@ -25,9 +24,11 @@
 		excerpt?: string;
 	}
 
-	export let data: { posts: Post[] };
-
-	let lang: string | null = null;
+	export let data: {
+		lang: string;
+		langCookie: string;
+		posts: Post[];
+	};
 
 	let showContent = false;
 	let selectedCategory: string | null = null;
@@ -35,15 +36,6 @@
 	let errorMessage: string | null = null;
 
 	onMount(() => {
-		const cookies = document.cookie.split(';');
-		for (let i = 0; i < cookies.length; i++) {
-			let cookie = cookies[i].trim();
-			if (cookie.startsWith('PARAGLIDE_LOCALE=')) {
-				lang = cookie.substring('PARAGLIDE_LOCALE='.length, cookie.length);
-				break;
-			}
-		}
-
 		if (!data.posts || data.posts.length === 0) {
 			errorMessage = 'No posts found.';
 			showContent = true;
@@ -119,7 +111,7 @@
 		<!-- Hero Header -->
 		<header class="hero text-center mb-16">
 			<h1
-				class="font-display text-[3.5rem] md:text-[5rem] leading-tight tracking-tight"
+				class="font-display text-[3.5rem] md:text[5rem] leading-tight tracking-tight"
 				in:fly={{ duration: 800, y: 20 }}
 			>
 				Blog
@@ -158,7 +150,7 @@
 				{:else}
 					{#each filteredPosts as post, index (post.slug?.current || index)}
 						<a
-							href={`/${lang}/blog/${post.slug?.current}`}
+							href={`/${data.langCookie}/blog/${post.slug?.current}`}
 							class="blog-card group"
 							in:fade={{ duration: 500, delay: index * 100 }}
 						>

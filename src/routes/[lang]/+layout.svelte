@@ -3,10 +3,11 @@
 	export let data: {
 		lang: string;
 		posts: any[];
+		langCookie: string;
 	};
 </script>
 
-<Header data={data.lang} />
+<Header lang={data.langCookie} />
 
 <main>
 	<slot />
