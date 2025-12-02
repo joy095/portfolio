@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { urlFor } from '$lib/sanity';
 	import RevealImage from '$lib/components/RevealImage.svelte';
-	import { smoothScrollToSection } from '$lib/scroll';
 	import type { Work } from '$lib/types/post'; // Import your Work type
 	import { inView } from '$lib/actions/inView';
 	import { onMount } from 'svelte';
-	// Removed: import { afterNavigate } from '$app/navigation'; // Not needed for this specific class removal
 
 	export let posts: Work[] = []; // Initialize as empty array to avoid undefined errors
 	export let error: Error | null = null; // Initialize as null
@@ -42,7 +40,19 @@
 
 	let contentVisible = false;
 
+	// Keep store in sync with URL (fallback if cookie missing)
+	let lang: string = 'en';
+
 	onMount(() => {
+		const cookies = document.cookie.split(';');
+		for (let i = 0; i < cookies.length; i++) {
+			let cookie = cookies[i].trim();
+			if (cookie.startsWith('PARAGLIDE_LOCALE=')) {
+				lang = cookie.substring('PARAGLIDE_LOCALE='.length, cookie.length);
+				break;
+			}
+		}
+
 		setTimeout(() => {
 			contentVisible = true;
 		}, 1500); // 1500ms = 1.5 seconds delay
@@ -65,7 +75,7 @@
 					<a
 						class="post-card opacity-0 translate-y-10 transition-all duration-1000 ease-out"
 						use:intersectionObserver={index}
-						href="works/{post.slug}"
+						href="{lang}/works/{post.slug}"
 						data-sveltekit-reload
 					>
 						<div class="flex flex-col mt-8 md:mt-0 justify-between gap-4 md:gap-5 md:w-[30%] pr-5">

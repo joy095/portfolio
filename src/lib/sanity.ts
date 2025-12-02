@@ -1,7 +1,6 @@
 import { createClient } from '@sanity/client';
 import type { SanityClient } from '@sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { createImageUrlBuilder, type SanityImageSource } from '@sanity/image-url';
 
 export const client: SanityClient = createClient({
 	projectId: import.meta.env.VITE_SANITY_PROJECT_ID,
@@ -10,13 +9,13 @@ export const client: SanityClient = createClient({
 	useCdn: true
 });
 
-const builder = imageUrlBuilder(client);
+const builder = createImageUrlBuilder(client);
 
 export function urlFor(source: SanityImageSource) {
 	return builder.image(source);
 }
 
-export async function getWorkBySlug(slug: string) {
+export async function getWorkBySlug(slug: string, lang: string) {
 	const query = `*[_type == "work" && slug.current == $slug][0]{
 		title,
 		"slug": slug.current,
@@ -33,7 +32,7 @@ export async function getWorkBySlug(slug: string) {
 	return await client.fetch(query, { slug });
 }
 
-export async function getNextWork(slug: string) {
+export async function getNextWork(slug: string, lang: string) {
 	const query = `
 		*[_type == "work" && serial > *[_type == "work" && slug.current == $slug][0].serial] 
 		| order(serial asc)[0]{

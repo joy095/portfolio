@@ -27,14 +27,27 @@
 
 	export let data: { posts: Post[] };
 
+	let lang: string | null = null;
+
 	let showContent = false;
 	let selectedCategory: string | null = null;
 	let categories: string[] = ['All'];
 	let errorMessage: string | null = null;
 
 	onMount(() => {
+		const cookies = document.cookie.split(';');
+		for (let i = 0; i < cookies.length; i++) {
+			let cookie = cookies[i].trim();
+			if (cookie.startsWith('PARAGLIDE_LOCALE=')) {
+				lang = cookie.substring('PARAGLIDE_LOCALE='.length, cookie.length);
+				break;
+			}
+		}
+
 		if (!data.posts || data.posts.length === 0) {
 			errorMessage = 'No posts found.';
+			showContent = true;
+			return;
 		}
 		// Extract unique categories from posts
 		const categorySet = new Set<string>();
@@ -49,7 +62,6 @@
 		});
 		categories = ['All', ...Array.from(categorySet)];
 		showContent = true;
-		return () => {};
 	});
 
 	// Filter posts by selected category
@@ -87,8 +99,8 @@
 	/>
 	<meta
 		name="twitter:image"
-		content={data.posts[0]?.mainImage
-			? urlFor(data.posts[0].mainImage).width(1200).url()
+		content={data.posts?.[0]?.mainImage
+			? urlFor(data.posts?.[0].mainImage).width(1200).url()
 			: 'https://joykarmakar.vercel.app/logo.webp'}
 	/>
 	<link
@@ -146,7 +158,7 @@
 				{:else}
 					{#each filteredPosts as post, index (post.slug?.current || index)}
 						<a
-							href={`/blog/${post.slug?.current}`}
+							href={`/${lang}/blog/${post.slug?.current}`}
 							class="blog-card group"
 							in:fade={{ duration: 500, delay: index * 100 }}
 						>

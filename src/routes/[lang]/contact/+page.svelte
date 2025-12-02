@@ -2,8 +2,49 @@
 	import { fly } from 'svelte/transition';
 	import { enhance } from '$app/forms';
 	import { inView } from '$lib/actions/inView.js';
+	import * as m from '$lib/paraglide/messages.js';
+	import { setLocale, locales } from '$lib/paraglide/runtime.js';
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 
-	export let data;
+	let open = false;
+
+	function toggle() {
+		open = !open;
+	}
+
+	function close(e: MouseEvent) {
+		if (!e.composedPath().some((el) => (el as HTMLElement).classList?.contains('dropdown-root'))) {
+			open = false;
+		}
+	}
+
+	// close on outside click
+	onMount(() => {
+		setTimeout(() => {
+			showContact = true;
+		}, 1000);
+
+		if (browser) {
+			window.addEventListener('click', close);
+		}
+
+		return () => {
+			if (browser) {
+				window.removeEventListener('click', close);
+			}
+		};
+	});
+
+	const meteData = {
+		title: 'Joy Karmakar - Contact Me',
+		description:
+			'Explore the portfolio of Joy Karmakar, a web developer and designer specializing in building beautiful, functional websites using modern technologies.',
+		url: 'https://joykarmakar.vercel.app/contact',
+		image: 'https://joykarmakar.vercel.app/contact.webp',
+		siteName: 'Joy Karmakar Portfolio',
+		twitterHandle: '@JoyKarmakar9871'
+	};
 
 	interface FormData {
 		name: string;
@@ -62,7 +103,7 @@
 
 				isSubmitting = false;
 				await update();
-			} else if (result.type === 'error') {
+			} else if (result.type === 'failure' || result.type === 'error') {
 				console.error('Submission error:', result.error);
 				submitStatus = 'error';
 				// You might want to get specific error message from result.data if you sent it from the server action
@@ -79,32 +120,34 @@
 		validatePhone(formData.phone);
 	}
 
-	setTimeout(() => {
-		showContact = true;
-	}, 1000);
+	onMount(() => {
+		setTimeout(() => {
+			showContact = true;
+		}, 1000);
+	});
 </script>
 
 <svelte:head>
-	<title>{data.title}</title>
-	<meta name="description" content={data.description} />
+	<title>{meteData.title}</title>
+	<meta name="description" content={meteData.description} />
 
 	<!-- Open Graph Meta Tags -->
-	<meta property="og:title" content={data.title} />
-	<meta property="og:description" content={data.description} />
-	<meta property="og:url" content={data.url} />
-	<meta property="og:image" content={data.image} />
+	<meta property="og:title" content={meteData.title} />
+	<meta property="og:description" content={meteData.description} />
+	<meta property="og:url" content={meteData.url} />
+	<meta property="og:image" content={meteData.image} />
 	<meta property="og:image:type" content="image/jpg" />
 	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content={data.siteName} />
-	<link rel="canonical" href={data.url} />
+	<meta property="og:site_name" content={meteData.siteName} />
+	<link rel="canonical" href={meteData.url} />
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content={data.twitterHandle} />
-	<meta name="twitter:creator" content={data.twitterHandle} />
-	<meta name="twitter:title" content={data.title} />
-	<meta name="twitter:description" content={data.description} />
-	<meta name="twitter:image" content={data.image} />
+	<meta name="twitter:site" content={meteData.twitterHandle} />
+	<meta name="twitter:creator" content={meteData.twitterHandle} />
+	<meta name="twitter:title" content={meteData.title} />
+	<meta name="twitter:description" content={meteData.description} />
+	<meta name="twitter:image" content={meteData.image} />
 </svelte:head>
 
 <div use:inView={{ threshold: 0.2 }} on:inview={() => (showContact = true)} class="container-auto">
@@ -160,7 +203,7 @@
 					</div>
 
 					<div class="flex flex-col gap-2 mt-6">
-						<label class="text-xl font-medium" for="name">Subject*</label>
+						<label class="text-xl font-medium" for="subject">Subject*</label>
 						<input
 							class="rounded bg-[#f1efed] placeholder:text-[#888786] p-3 focus:outline-none"
 							type="text"
@@ -175,13 +218,13 @@
 						<label class="text-xl font-medium" for="email">Email*</label>
 						<input
 							class="rounded bg-[#f1efed] placeholder:text-[#888786] p-3 focus:outline-none"
-							type="text"
+							type="email"
 							name="email"
 							bind:value={formData.email}
 							on:input={(e) => validateEmail(e.currentTarget.value)}
 							class:invalid={!isEmailValid && formData.email}
 							required
-							placeholder="hello.website.com"
+							placeholder="hello@website.com"
 						/>
 						{#if !isEmailValid && formData.email}
 							<p class="text-red-500 text-sm mt-1">Please enter a valid email address</p>
@@ -189,7 +232,7 @@
 					</div>
 
 					<div class="flex flex-col gap-2 mt-6">
-						<label class="text-xl font-medium" for="name">Phone</label>
+						<label class="text-xl font-medium" for="phone">Phone</label>
 						<input
 							class="rounded bg-[#f1efed] placeholder:text-[#888786] p-3 focus:outline-none"
 							type="tel"
@@ -238,7 +281,33 @@
 	</div>
 </div>
 
+<!-- <h1>{m.greeting({ name: 'Alice' })}</h1>
+<p>{m.welcome()}</p>
+
+<div>
+	{#each locales as locale}
+		<button on:click={() => setLocale(locale)}>
+			{locale}
+		</button>
+	{/each}
+</div> -->
+
 <style>
+	/* smooth dropdown */
+	@keyframes fade {
+		from {
+			opacity: 0;
+			transform: scale(0.95);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+	.animate-fade {
+		animation: fade 0.15s ease-out;
+	}
+
 	.invalid {
 		border: 2px solid red;
 	}

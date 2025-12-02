@@ -1,0 +1,7 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "example_message": "Guten Tag {username}",
+  "greeting": "Hallo, {name} !",
+  "welcome": "Willkommen in unserer App",
+  "cta_button": "Los geht's"
+}

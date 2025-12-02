@@ -13,25 +13,25 @@
 	import { dev } from '$app/environment';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 
+	import { page } from '$app/state';
+	import { locales, localizeHref } from '$lib/paraglide/runtime';
+
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
 
 	let numberOfLines = 11;
-	let showSplash = false; // Initialize to false by default on SSR
-	let isContentVisible = false; // Initialize to false to hide content initially
+	let showSplash = false;
+	let isContentVisible = false;
 
 	onMount(() => {
-		initializeLenis(); // Initialize Lenis on mount
+		initializeLenis();
 
 		if (showSplash) {
-			// Only hide splash after 3 seconds if it was shown
 			setTimeout(() => {
 				showSplash = false;
 			}, 3000);
 		}
 
-		// Subscribe to headerAnimationComplete
 		headerAnimationComplete.subscribe((isComplete: boolean) => {
-			// Only update isContentVisible if splash is no longer shown
 			if (!showSplash) {
 				isContentVisible = isComplete;
 			}
@@ -44,6 +44,12 @@
 		<slot />
 	</div>
 </main>
+
+<div style="display:none">
+	{#each locales as locale}
+		<a href={localizeHref(page.url.pathname, { locale })}>{locale}</a>
+	{/each}
+</div>
 
 <Header />
 {#if isContentVisible}
@@ -60,14 +66,12 @@
 		background-color: #f1efed;
 		letter-spacing: -0.02em;
 
-		/* Background container */
 		.background {
 			position: relative;
 			min-height: 100vh;
 			overflow: hidden;
 		}
 
-		/* Background lines */
 		.background::before {
 			content: '';
 			position: absolute;

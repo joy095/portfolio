@@ -5,7 +5,7 @@ import { error } from '@sveltejs/kit';
 
 export async function load() {
 	try {
-		const postsQuery = `*[_type == "work"] | order(serial asc)[0..3] {
+		const postsQuery = `*[_type == "work"] | order(serial asc) {
             _id,
             title,
             "slug": slug.current,
@@ -21,16 +21,12 @@ export async function load() {
 		const posts: Work[] = await client.fetch<Work[]>(postsQuery);
 
 		return {
-			posts
+			posts: posts
 		};
 	} catch (err) {
 		console.error('Error fetching posts for main page SSG:', err);
-		if (import.meta.env.SSR && prerender) {
-			console.warn('Prerender failed, returning empty posts array');
-			return { posts: [] };
-		}
 		throw error(500, 'Failed to load posts.');
 	}
 }
 
-export const prerender = true;
+export const prerender = true; // Crucial for SSG

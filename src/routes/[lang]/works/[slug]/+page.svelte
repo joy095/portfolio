@@ -259,7 +259,7 @@
 
 			<div class="post-container">
 				<a
-					href={`/works/${nextWork?.slug}`}
+					href={`${nextWork?.slug}`}
 					class="post-card translate-y-10 transition-all duration-1000 ease-out"
 					data-sveltekit-reload
 				>
