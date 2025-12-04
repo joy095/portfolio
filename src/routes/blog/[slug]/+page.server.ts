@@ -1,7 +1,7 @@
 // src/routes/blog/[slug]/+page.server.ts
 import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity';
-import imageUrlBuilder from '@sanity/image-url';
+import { createImageUrlBuilder } from '@sanity/image-url';
 import { error } from '@sveltejs/kit';
 
 // Enable SSG
@@ -23,7 +23,7 @@ export async function entries() {
 	}
 }
 
-const builder = imageUrlBuilder(client);
+const builder = createImageUrlBuilder(client);
 
 function _urlFor(source: any) {
 	return builder.image(source);
