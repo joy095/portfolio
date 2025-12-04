@@ -54,7 +54,9 @@
 {#if contentVisible}
 	<div class="container-auto">
 		<div class="flex justify-between border-b-2 border-black/80 pb-3">
-			<p class="font-medium text-2xl leading-[1.6] tracking-tighter">{m['home_page.feature_work']()}</p>
+			<p class="font-medium text-2xl leading-[1.6] tracking-tighter">
+				{m['home_page.feature_work']()}
+			</p>
 			<a
 				on:click={(e) => smoothScrollToSection(e, '#project')}
 				href="{lang}/#project"
@@ -76,7 +78,7 @@
 
 <!-- <Project {lang} {posts} {error} /> -->
 
-{#if contentVisible}
+<!-- {#if contentVisible}
 	<div class="container-auto text-center mt-28">
 		<a
 			href="{lang}/works"
@@ -85,7 +87,7 @@
 			{m['home_page.all_works']()}
 		</a>
 	</div>
-{/if}
+{/if} -->
 
 <About />
 
