@@ -51,7 +51,7 @@
 
 <Hero />
 
-{#if contentVisible}
+<!-- {#if contentVisible}
 	<div class="container-auto">
 		<div class="flex justify-between border-b-2 border-black/80 pb-3">
 			<p class="font-medium text-2xl leading-[1.6] tracking-tighter">
@@ -74,7 +74,7 @@
 	</div>
 
 	<div id="project"></div>
-{/if}
+{/if} -->
 
 <!-- <Project {lang} {posts} {error} /> -->
 
