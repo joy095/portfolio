@@ -1,0 +1,76 @@
+{
+	"name": "protfolio",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "bunx vite dev",
+		"build": "bunx vite build && bun run package",
+		"preview": "bunx vite preview",
+		"package": "bunx svelte-kit sync && bunx svelte-package && bunx publint",
+		"prepublishOnly": "bun run package",
+		"check": "bunx svelte-kit sync && bunx svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "bunx svelte-kit sync && bunx svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "bunx eslint . && bunx prettier --check .",
+		"format": "bunx prettier --write .",
+		"machine-translate": "inlang machine translate --project project.inlang"
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"sideEffects": [
+		"**/*.css"
+	],
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		}
+	},
+	"peerDependencies": {
+		"svelte": "^5.0.0"
+	},
+	"devDependencies": {
+		"@eslint/compat": "^1.3.1",
+		"@fontsource-variable/space-grotesk": "^5.2.8",
+		"@inlang/cli": "^3.0.0",
+		"@inlang/paraglide-js": "^2.5.0",
+		"@inlang/sdk": "^2.4.9",
+		"@portabletext/svelte": "^3.0.0",
+		"@sanity/types": "^4.2.0",
+		"@sveltejs/adapter-auto": "^6.0.1",
+		"@sveltejs/adapter-vercel": "^5.8.1",
+		"@sveltejs/enhanced-img": "^0.8.0",
+		"@sveltejs/kit": "^2.27.0",
+		"@sveltejs/package": "^2.4.0",
+		"@sveltejs/vite-plugin-svelte": "^6.1.0",
+		"@sveltejs/vite-plugin-svelte-inspector": "^5.0.1",
+		"@tailwindcss/postcss": "^4.1.11",
+		"@types/nodemailer": "^6.4.17",
+		"autoprefixer": "^10.4.21",
+		"eslint": "^9.32.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.11.0",
+		"globals": "^16.3.0",
+		"prettier": "^3.6.2",
+		"prettier-plugin-svelte": "^3.4.0",
+		"publint": "^0.3.12",
+		"svelte": "^5.37.2",
+		"svelte-check": "^4.3.0",
+		"tailwindcss": "^4.1.11",
+		"typescript": "^5.9.2",
+		"typescript-eslint": "^8.38.0",
+		"vite": "^7.0.6"
+	},
+	"dependencies": {
+		"@sanity/client": "^7.8.1",
+		"@sanity/image-url": "^1.1.0",
+		"@studio-freight/lenis": "^1.0.42",
+		"@tailwindcss/vite": "^4.1.11",
+		"@vercel/analytics": "^1.5.0",
+		"nodemailer": "^7.0.5"
+	}
+}
