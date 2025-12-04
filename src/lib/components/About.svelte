@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { m } from '$lib/paraglide/messages';
+	import { home_page_view_credential } from '$lib/paraglide/messages/en';
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 
@@ -99,7 +101,7 @@
 				class="font-medium text-2xl leading-[1.6] tracking-tighter"
 				in:fly={{ x: -20, duration: 600, delay: 100 }}
 			>
-				About
+				{m['home_page.about']()}
 			</p>
 			<div class="nav-border"></div>
 		</div>
@@ -109,11 +111,7 @@
 				<p
 					class="font-medium text-lg sm:text-[1.5rem] md:text-[1.625rem] lg:text-3xl lg:leading-[1.6] leading-[1.6] tracking-tighter"
 				>
-					Full-stack web developer proficient in HTML, CSS, and JavaScript, with experience in
-					React.js, Tailwind CSS, Node.js, and Express.js. Skilled in working with databases like
-					PostgreSQL and MongoDB. Familiar with TypeScript, Webflow for design-centric development,
-					GSAP for animations, Figma for UI/UX design, Golang, Docker, and version control using
-					Git. Focused on creating efficient and functional web applications.
+					{m['home_page.about_description']()}
 				</p>
 
 				<div class="mt-12">
@@ -136,7 +134,7 @@
 								d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
 							/>
 						</svg>
-						Download my CV
+						{m['home_page.download_cv']()}
 					</a>
 				</div>
 			</div>
@@ -163,7 +161,7 @@
 
 		<div class="mt-28">
 			<h2 class="text-4xl font-semibold text-center mb-16 text-gray-800">
-				Certifications & Achievements
+				{m['home_page.certifications']()}
 			</h2>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 				{#each allCertificates as cert, i (cert.id)}
@@ -211,7 +209,7 @@
 							href={cert.link}
 							class="inline-flex items-center mt-auto font-semibold text-indigo-700 hover:text-indigo-900 transition-colors duration-200"
 						>
-							View Credential
+							{m['home_page.view_credential']()}
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								class="h-4 w-4 ml-1"

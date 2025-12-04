@@ -5,8 +5,11 @@
 	import { fly } from 'svelte/transition';
 	import StaggerText from './StaggerText.svelte';
 	import { inView } from '$lib/actions/inView';
+	import { m } from '$lib/paraglide/messages';
 
-	let text = `A showcase of web applications and backend systems I’ve developed using modern tools like Go, PostgreSQL, Redis, SvelteKit, React, Node.js, and more — all focused on speed, scalability, and great user experience.`;
+	// let text = `A showcase of web applications and backend systems I’ve developed using modern tools like Go, PostgreSQL, Redis, SvelteKit, React, Node.js, and more — all focused on speed, scalability, and great user experience.`;
+
+	let text = m['home_hero.text']();
 
 	let scrollDirection: 'up' | 'down' | null = null;
 	let lastScrollTop = 0;
@@ -97,7 +100,7 @@
 				<h2
 					class="text-[10vw] xl:text-[7rem] lg:text-[5.5rem] md:text-[5rem] leading-[0.8] font-light tracking-tighter"
 				>
-					I'm Joy Karmakar
+					Joy Karmakar
 				</h2>
 			</div>
 		</div>
@@ -121,7 +124,7 @@
 				class="flex items-center min-w-fit"
 			>
 				<h3 class="font-bold text-[10vw] xl:text-[7rem] lg:text-[5.5rem] md:text-[5rem]">
-					A developer
+					{m['home_hero.text-2']()}
 				</h3>
 			</div>
 		</div>
@@ -131,7 +134,7 @@
 				in:fly={{ y: 20, duration: 800, delay: 900, opacity: 0 }}
 				class="text-[10vw] xl:text-[7rem] lg:text-[5.5rem] md:text-[5rem] font-light leading-[0.9] mt-4 tracking-tighter flex justify-center"
 			>
-				lives by develop
+				{m['home_hero.text-3']()}
 			</h2>
 		</div>
 	</div>

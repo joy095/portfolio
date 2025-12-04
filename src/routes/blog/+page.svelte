@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { urlFor } from '$lib/sanityImage';
 	import { inView } from '$lib/actions/inView';
+	import { m } from '$lib/paraglide/messages';
 
 	interface Author {
 		name?: string;
@@ -19,13 +20,14 @@
 		title?: string;
 		slug?: { current: string };
 		publishedAt?: string;
-		mainImage?: { _type: string; asset?: { _ref: string }; alt?: string };
+		mainImage?: { _type: string; asset?: { _ref: string } };
+		alt?: string;
 		author?: Author;
 		categories?: Category[];
 		excerpt?: string;
 	}
 
-	export let data: { posts: Post[]; lang };
+	export let data: { posts: Post[]; lang: 'en' | 'de' };
 
 	const lang = data.lang ?? 'en';
 
@@ -33,6 +35,15 @@
 	let selectedCategory: string | null = null;
 	let categories: string[] = ['All'];
 	let errorMessage: string | null = null;
+
+	const metaData = {
+		title: `Joy Karmakar - ${m['blog_page.meta_title']()}`,
+		description: m['blog_page.description'](),
+		url: `https://joykarmakar.vercel.app/${data.lang}/contact`,
+		image: 'https://joykarmakar.vercel.app/contact.webp',
+		siteName: 'Joy Karmakar Portfolio',
+		twitterHandle: '@JoyKarmakar9871'
+	};
 
 	onMount(() => {
 		if (!data.posts || data.posts.length === 0) {
@@ -62,16 +73,10 @@
 </script>
 
 <svelte:head>
-	<title>Joy karmakar - Blog</title>
-	<meta
-		name="description"
-		content="Explore our latest software engineering insights, tutorials, and in-depth articles."
-	/>
-	<meta property="og:title" content="Software Engineering Blog" />
-	<meta
-		property="og:description"
-		content="Explore our latest software engineering insights, tutorials, and in-depth articles."
-	/>
+	<title>Joy karmakar - {metaData.title}</title>
+	<meta name="description" content={metaData.description} />
+	<meta property="og:title" content={metaData.title} />
+	<meta property="og:description" content={metaData.description} />
 	<meta property="og:url" content="https://joykarmakar.vercel.app/blog" />
 	<meta
 		property="og:image"
@@ -82,11 +87,8 @@
 	<meta property="og:type" content="website" />
 	<link rel="canonical" href="https://joykarmakar.vercel.app/blog" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Software Engineering Blog" />
-	<meta
-		name="twitter:description"
-		content="Explore our latest software engineering insights, tutorials, and in-depth articles."
-	/>
+	<meta name="twitter:title" content={metaData.title} />
+	<meta name="twitter:description" content={metaData.description} />
 	<meta
 		name="twitter:image"
 		content={data.posts[0]?.mainImage
@@ -112,13 +114,13 @@
 				class="font-display text-[3.5rem] md:text-[5rem] leading-tight tracking-tight"
 				in:fly={{ duration: 800, y: 20 }}
 			>
-				Blog
+				{m['blog_page.title']()}
 			</h1>
 			<p
 				class="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mt-4"
 				in:fly={{ duration: 800, y: 20, delay: 200 }}
 			>
-				Discover insights, tutorials, and in-depth articles on software engineering.
+				{m['blog_page.description']()}
 			</p>
 		</header>
 
@@ -155,8 +157,8 @@
 							{#if post.mainImage?.asset}
 								<div class="card-image">
 									<img
-										src={urlFor(post.mainImage).width(400).url()}
-										alt={post.mainImage.alt || post.title || 'Blog Image'}
+										src={urlFor(post.mainImage).width(400).dpr(2).quality(80).fit('max').url()}
+										alt={post.alt || post.title || 'Blog Image'}
 										class="w-full h-full object-cover rounded-lg"
 									/>
 								</div>
@@ -230,6 +232,7 @@
 		transition:
 			background 0.3s ease,
 			color 0.3s ease;
+		cursor: pointer;
 	}
 	.category-btn:hover {
 		background: #151515;

@@ -1,4 +1,56 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"example_message": "Guten Tag {username}"
+	"example_message": "Hallo Welt {username}",
+	"contact_page": {
+		"title": "Kontakt",
+		"description": "Nehmen Sie per E-Mail oder Formular Kontakt mit uns auf.",
+		"h1": "Ich freue mich darauf, von Ihnen zu hören! Wenn Sie lieber keine Formulare ausfüllen möchten, schreiben Sie mir einfach eine E-Mail, und wir können über das nächste große Projekt sprechen!"
+	},
+	"contact_form": {
+		"name": "Name",
+		"email": "E-Mail",
+		"subject": "Thema",
+		"message": "Nachricht",
+		"phone": "Telefon",
+		"submit": "Einreichen",
+		"success": "Nachricht erfolgreich gesendet!",
+		"error": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+		"name_placeholder": "Beispiel: John Doe",
+		"phone_error": "Bitte geben Sie eine gültige Telefonnummer ein.",
+		"email_error": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+		"message_placeholder": "Nachricht teilen"
+	},
+	"test": "Dies ist eine Testnachricht.",
+	"nav_links": {
+		"about": "Um",
+		"blog": "Blog",
+		"contact": "Kontakt",
+		"description": "Entdecken Sie das Portfolio von Joy Karmakar, einer Webentwicklerin und -designerin, die sich auf die Erstellung schöner, funktionaler Websites mit modernen Technologien spezialisiert hat."
+	},
+	"blog_page": {
+		"title": "Blog",
+		"description": "Entdecken Sie die neuesten Erkenntnisse, Tutorials und ausführlichen Artikel zum Thema Softwareentwicklung.",
+		"meta_title": "Einblicke, Tutorials und Artikel zur Softwareentwicklung"
+	},
+	"home_page": {
+		"title": "Joy Karmakar – Full-Stack-Entwicklerin &amp; UI/UX-Designerin",
+		"description": "Portfolio von Joy Karmakar – Full-Stack-Entwicklerin mit Spezialisierung auf React, Svelte, Node.js und moderne Webtechnologien. Entdecken Sie meine Projekte und meine Erfahrung.",
+		"feature_work": "Ausgewählte Arbeiten",
+		"scroll_down": "Scrollen Sie nach unten",
+		"certifications": "Zertifizierungen &amp; Auszeichnungen",
+		"experience": "Erfahrung",
+		"work_desc": "Arbeiten, die für Unternehmen verschiedenster Branchen entwickelt wurden und reale Probleme mit sauberer Technik und durchdachtem Design lösen.",
+		"view_credential": "Anmeldeinformationen anzeigen",
+		"download_cv": "Laden Sie meinen Lebenslauf herunter",
+		"about": "Um",
+		"about_description": "Ich bin ein Entwickler, der mit Leidenschaft schnelle, zuverlässige und skalierbare Anwendungen entwickelt. Ich arbeite sowohl im Frontend- als auch im Backend-Bereich und lege Wert auf saubere Architektur, hohe Performance und eine optimale Benutzererfahrung.",
+		"all_works": "Alle Werke",
+		"view": "Sicht"
+	},
+	"home_hero": {
+		"text": "Ich bin ein Entwickler, der skalierbare und benutzerorientierte Webanwendungen erstellt. Ich arbeite sowohl im Frontend- als auch im Backend-Bereich und nutze moderne Tools und eine saubere Architektur, um zuverlässige digitale Erlebnisse zu schaffen.",
+		"text-1": "Ich bin Joy Karmakar",
+		"text-2": "Ein Entwickler",
+		"text-3": "Besser bauen"
+	}
 }

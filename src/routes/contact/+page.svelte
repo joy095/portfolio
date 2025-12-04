@@ -3,9 +3,17 @@
 	import { enhance } from '$app/forms';
 	import { inView } from '$lib/actions/inView.js';
 	import { m } from '$lib/paraglide/messages.js';
-	import { setLocale, getLocale, localizeUrl } from '$lib/paraglide/runtime.js';
 
-	export let data;
+	export let data: { lang: 'en' | 'de' };
+
+	const metaData = {
+		title: `Joy Karmakar - ${m['contact_page.title']()}`,
+		description: m['contact_page.description'](),
+		url: `https://joykarmakar.vercel.app/${data.lang}/contact`,
+		image: 'https://joykarmakar.vercel.app/contact.webp',
+		siteName: 'Joy Karmakar Portfolio',
+		twitterHandle: '@JoyKarmakar9871'
+	};
 
 	interface FormData {
 		name: string;
@@ -84,63 +92,46 @@
 	setTimeout(() => {
 		showContact = true;
 	}, 1000);
-
-	// function changeLang(lang: string) {
-	// 	setLocale(lang);
-	// 	const newUrl = localizeUrl(window.location.href, lang);
-
-	// 	// Hard navigation (needed for SSR + middleware)
-	// 	window.location.assign(newUrl);
-	// }
-	// 💥 there is no url in this context to retrieve
-	//    the locale from.
-	console.log(m.example_message({ username: 'Joy' }));
 </script>
 
 <svelte:head>
-	<title>{data.title}</title>
-	<meta name="description" content={data.description} />
+	<title>{metaData.title}</title>
+	<meta name="description" content={metaData.description} />
 
 	<!-- Open Graph Meta Tags -->
-	<meta property="og:title" content={data.title} />
-	<meta property="og:description" content={data.description} />
-	<meta property="og:url" content={data.url} />
-	<meta property="og:image" content={data.image} />
+	<meta property="og:title" content={metaData.title} />
+	<meta property="og:description" content={metaData.description} />
+	<meta property="og:url" content={metaData.url} />
+	<meta property="og:image" content={metaData.image} />
 	<meta property="og:image:type" content="image/jpg" />
 	<meta property="og:type" content="website" />
-	<meta property="og:site_name" content={data.siteName} />
-	<link rel="canonical" href={data.url} />
+	<meta property="og:site_name" content={metaData.siteName} />
+	<link rel="canonical" href={metaData.url} />
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content={data.twitterHandle} />
-	<meta name="twitter:creator" content={data.twitterHandle} />
-	<meta name="twitter:title" content={data.title} />
-	<meta name="twitter:description" content={data.description} />
-	<meta name="twitter:image" content={data.image} />
+	<meta name="twitter:site" content={metaData.twitterHandle} />
+	<meta name="twitter:creator" content={metaData.twitterHandle} />
+	<meta name="twitter:title" content={metaData.title} />
+	<meta name="twitter:description" content={metaData.description} />
+	<meta name="twitter:image" content={metaData.image} />
 </svelte:head>
 
 <div use:inView={{ threshold: 0.2 }} on:inview={() => (showContact = true)} class="container-auto">
-	<h1
+	<h2
 		class="mt-40 font-semibold text-[5rem] md:text-[6.875rem] tracking-tighter leading-tight"
 		in:fly={{ duration: 800, y: 50 }}
 	>
-		Contact
-	</h1>
-
-	<!-- <select on:change={(e) => changeLang(e.target.value)}>
-		<option value="en" selected={getLocale() === 'en'}>English</option>
-		<option value="de" selected={getLocale() === 'de'}>Deutsch</option>
-	</select> -->
+		{m['contact_page.title']()}
+	</h2>
 
 	<div class="border-t border-black">
 		<div class="flex mt-20">
 			<div class="md:w-[30%]"></div>
 			<div class="md:w-[70%]">
-				<p class="text-xl md:text-3xl leading-[1.5] font-medium">
-					I'm looking forward to hearing from you! If you prefer not to fill out forms, feel free to
-					email me directly and let's talk about the next big thing!
-				</p>
+				<h1 class="text-xl md:text-3xl leading-[1.5] font-medium">
+					{m['contact_page.h1']()}
+				</h1>
 
 				<a
 					class="text-xl font-medium button overflow-hidden flex items-center pb-2 gap-2 mt-5 w-fit nav-links"
@@ -166,31 +157,31 @@
 
 				<form method="POST" use:enhance={submitEnhance} class="mt-10 mb-32 bg-[#e5e1dc] p-5 md:p-8">
 					<div class="flex flex-col gap-2">
-						<label class="text-xl font-medium" for="name">Name*</label>
+						<label class="text-xl font-medium" for="name">{m['contact_form.name']()}*</label>
 						<input
-							class="rounded bg-[#f1efed] placeholder:text-[#888786] p-3 focus:outline-none"
 							type="text"
 							name="name"
 							bind:value={formData.name}
+							placeholder={m['contact_form.name_placeholder']()}
 							required
-							placeholder="Ex. John Doe"
+							class="rounded bg-[#f1efed] placeholder:text-[#888786] p-3 focus:outline-none"
 						/>
 					</div>
 
 					<div class="flex flex-col gap-2 mt-6">
-						<label class="text-xl font-medium" for="name">Subject*</label>
+						<label class="text-xl font-medium" for="name">{m['contact_form.subject']()}*</label>
 						<input
 							class="rounded bg-[#f1efed] placeholder:text-[#888786] p-3 focus:outline-none"
 							type="text"
 							name="subject"
 							bind:value={formData.subject}
 							required
-							placeholder="Subject"
+							placeholder={m['contact_form.subject']()}
 						/>
 					</div>
 
 					<div class="flex flex-col gap-2 mt-6">
-						<label class="text-xl font-medium" for="email">Email*</label>
+						<label class="text-xl font-medium" for="email">{m['contact_form.email']()}*</label>
 						<input
 							class="rounded bg-[#f1efed] placeholder:text-[#888786] p-3 focus:outline-none"
 							type="text"
@@ -199,15 +190,15 @@
 							on:input={(e) => validateEmail(e.currentTarget.value)}
 							class:invalid={!isEmailValid && formData.email}
 							required
-							placeholder="hello.website.com"
+							placeholder="hello@website.com"
 						/>
 						{#if !isEmailValid && formData.email}
-							<p class="text-red-500 text-sm mt-1">Please enter a valid email address</p>
+							<p class="text-red-500 text-sm mt-1">{m['contact_form.email_error']()}</p>
 						{/if}
 					</div>
 
 					<div class="flex flex-col gap-2 mt-6">
-						<label class="text-xl font-medium" for="name">Phone</label>
+						<label class="text-xl font-medium" for="name">{m['contact_form.phone']()}</label>
 						<input
 							class="rounded bg-[#f1efed] placeholder:text-[#888786] p-3 focus:outline-none"
 							type="tel"
@@ -218,18 +209,18 @@
 							placeholder="+91 1234567890"
 						/>
 						{#if !isPhoneValid && formData.phone}
-							<p class="text-red-500 text-sm mt-1">Please enter a valid phone number</p>
+							<p class="text-red-500 text-sm mt-1">{m['contact_form.phone_error']()}</p>
 						{/if}
 					</div>
 
 					<div class="flex flex-col gap-2 mt-6">
-						<label class="text-xl font-medium" for="message">Message*</label>
+						<label class="text-xl font-medium" for="message">{m['contact_form.message']()}*</label>
 						<textarea
 							class="rounded bg-[#f1efed] placeholder:text-[#888786] p-3 focus:outline-none"
 							name="message"
 							bind:value={formData.message}
 							required
-							placeholder="Share Message"
+							placeholder={m['contact_form.message_placeholder']()}
 							rows="5"
 						></textarea>
 					</div>
@@ -241,14 +232,14 @@
 						{#if isSubmitting}
 							Sending...
 						{:else}
-							Submit
+							{m['contact_form.submit']()}
 						{/if}
 					</button>
 
 					{#if submitStatus === 'success'}
-						<p class="text-green-500 mt-2">Message sent successfully!</p>
+						<p class="text-green-500 mt-2">{m['contact_form.success']()}</p>
 					{:else if submitStatus === 'error'}
-						<p class="text-red-500 mt-2">Failed to send message. Please try again.</p>
+						<p class="text-red-500 mt-2">{m['contact_form.error']()}</p>
 					{/if}
 				</form>
 			</div>

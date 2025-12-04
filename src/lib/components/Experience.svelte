@@ -1,5 +1,6 @@
 <script>
 	import { inView } from '$lib/actions/inView';
+	import { m } from '$lib/paraglide/messages';
 	import { fly } from 'svelte/transition';
 
 	let inVisible = false;
@@ -21,7 +22,7 @@
 				class="font-medium text-2xl leading-[1.6] tracking-tighter"
 				in:fly={{ x: -20, duration: 600, delay: 100 }}
 			>
-				Expericence
+				{m['home_page.experience']()}
 			</p>
 			<div class="nav-border"></div>
 		</div>
@@ -29,8 +30,7 @@
 		<div class="flex gap-10 md:gap-5 flex-col md:flex-row justify-between mt-16">
 			<div class="md:w-[30%]">
 				<p class="font-medium text-xl leading-[1.6] tracking-tighter">
-					I've worked with companies and clients. I enjoy collaborating with clients who appreciate
-					the importance of good developer.
+					{m['home_page.work_desc']()}
 				</p>
 			</div>
 			<div

@@ -135,12 +135,18 @@
 							<img
 								loading="lazy"
 								srcset={`
-										${urlFor(work.image).width(480).auto('format').url()} 480w,
-										${urlFor(work.image).width(768).auto('format').url()} 768w,
-										${urlFor(work.image).width(1024).auto('format').url()} 1024w,
-										${urlFor(work.image).width(1440).auto('format').url()} 1440w
+										${urlFor(work.image).width(480).dpr(2).quality(80).auto('format').fit('max').url()} 480w,
+										${urlFor(work.image).width(768).dpr(2).quality(80).auto('format').fit('max').url()} 768w,
+										${urlFor(work.image).width(1024).dpr(2).quality(80).auto('format').fit('max').url()} 1024w,
+										${urlFor(work.image).width(1440).dpr(2).quality(80).auto('format').fit('max').url()} 1440w
 										`}
-								src={urlFor(work.image).width(800).auto('format').url()}
+								src={urlFor(work.image)
+									.width(800)
+									.dpr(2)
+									.quality(80)
+									.auto('format')
+									.fit('max')
+									.url()}
 								sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 								alt={work.title}
 								class="w-full h-[35vh] md:h-[90vh] object-cover"
@@ -162,12 +168,12 @@
 							<img
 								loading="lazy"
 								srcset={`
-										${urlFor(work.image_2).width(480).auto('format').url()} 480w,
-										${urlFor(work.image_2).width(768).auto('format').url()} 768w,
-										${urlFor(work.image_2).width(1024).auto('format').url()} 1024w,
-										${urlFor(work.image_2).width(1440).auto('format').url()} 1440w
+										${urlFor(work.image_2).width(480).dpr(2).quality(80).auto('format').fit('max').url()} 480w,
+										${urlFor(work.image_2).width(768).dpr(2).quality(80).auto('format').fit('max').url()} 768w,
+										${urlFor(work.image_2).width(1024).dpr(2).quality(80).auto('format').fit('max').url()} 1024w,
+										${urlFor(work.image_2).width(1440).dpr(2).quality(80).auto('format').fit('max').url()} 1440w
 									`}
-								src={urlFor(work.image_2).width(800).auto('format').url()}
+								src={urlFor(work.image_2).dpr(2).quality(80).auto('format').fit('max').url()}
 								sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 								alt={work.title}
 								class="mx-auto w-[85%] md:w-full min-h-[100vh] md:min-h-[500vh] object-cover"
@@ -185,12 +191,18 @@
 								<img
 									loading="lazy"
 									srcset={`
-										${urlFor(work.image_3).width(480).auto('format').url()} 480w,
-										${urlFor(work.image_3).width(768).auto('format').url()} 768w,
-										${urlFor(work.image_3).width(1024).auto('format').url()} 1024w,
-										${urlFor(work.image_3).width(1440).auto('format').url()} 1440w
+											${urlFor(work.image_3).width(480).dpr(2).quality(80).auto('format').fit('max').url()} 480w,
+										${urlFor(work.image_3).width(768).dpr(2).quality(80).auto('format').fit('max').url()} 768w,
+										${urlFor(work.image_3).width(1024).dpr(2).quality(80).auto('format').fit('max').url()} 1024w,
+										${urlFor(work.image_3).width(1440).dpr(2).quality(80).auto('format').fit('max').url()} 1440w
 									`}
-									src={urlFor(work.image_3).width(800).auto('format').url()}
+									src={urlFor(work.image_3)
+										.width(800)
+										.dpr(2)
+										.quality(80)
+										.auto('format')
+										.fit('max')
+										.url()}
 									sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 									alt={work.title}
 									class="w-[85%] md:w-full max-w-full min-h-[50vh] max-h-full object-contain"
@@ -206,12 +218,18 @@
 								<img
 									loading="lazy"
 									srcset={`
-										${urlFor(work.image_4).width(480).auto('format').url()} 480w,
-										${urlFor(work.image_4).width(768).auto('format').url()} 768w,
-										${urlFor(work.image_4).width(1024).auto('format').url()} 1024w,
-										${urlFor(work.image_4).width(1440).auto('format').url()} 1440w
+											${urlFor(work.image_4).width(480).dpr(2).quality(80).auto('format').fit('max').url()} 480w,
+										${urlFor(work.image_4).width(768).dpr(2).quality(80).auto('format').fit('max').url()} 768w,
+										${urlFor(work.image_4).width(1024).dpr(2).quality(80).auto('format').fit('max').url()} 1024w,
+										${urlFor(work.image_4).width(1440).dpr(2).quality(80).auto('format').fit('max').url()} 1440w
 									`}
-									src={urlFor(work.image).width(800).auto('format').url()}
+									src={urlFor(work.image)
+										.width(800)
+										.dpr(2)
+										.quality(80)
+										.auto('format')
+										.fit('max')
+										.url()}
 									sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 									alt={work.title}
 									class="w-[85%] md:w-full max-w-full min-h-[50vh] max-h-full object-contain"
@@ -228,12 +246,18 @@
 							<img
 								loading="lazy"
 								srcset={`
-										${urlFor(work.image_5).width(480).auto('format').url()} 480w,
-										${urlFor(work.image_5).width(768).auto('format').url()} 768w,
-										${urlFor(work.image_5).width(1024).auto('format').url()} 1024w,
-										${urlFor(work.image_5).width(1440).auto('format').url()} 1440w
+										${urlFor(work.image_5).width(480).dpr(2).quality(80).auto('format').fit('max').url()} 480w,
+										${urlFor(work.image_5).width(768).dpr(2).quality(80).auto('format').fit('max').url()} 768w,
+										${urlFor(work.image_5).width(1024).dpr(2).quality(80).auto('format').fit('max').url()} 1024w,
+										${urlFor(work.image_5).width(1440).dpr(2).quality(80).auto('format').fit('max').url()} 1440w
 									`}
-								src={urlFor(work.image_5).width(800).auto('format').url()}
+								src={urlFor(work.image_5)
+									.width(800)
+									.dpr(2)
+									.quality(80)
+									.auto('format')
+									.fit('max')
+									.url()}
 								sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 								alt={work.title}
 								class="w-[85%] md:w-full max-w-full min-h-[50vh] max-h-full object-contain"
@@ -283,12 +307,12 @@
 							<RevealImage
 								className="project-banner"
 								srcset={`
-										${urlFor(nextWork.image).width(480).auto('format').url()} 480w,
-										${urlFor(nextWork.image).width(768).auto('format').url()} 768w,
-										${urlFor(nextWork.image).width(1024).auto('format').url()} 1024w,
-										${urlFor(nextWork.image).width(1440).auto('format').url()} 1440w
+										${urlFor(nextWork.image).width(480).dpr(2).quality(80).auto('format').fit('max').url()} 480w,
+										${urlFor(nextWork.image).width(768).dpr(2).quality(80).auto('format').fit('max').url()} 768w,
+										${urlFor(nextWork.image).width(1024).dpr(2).quality(80).auto('format').fit('max').url()} 1024w,
+										${urlFor(nextWork.image).width(1440).dpr(2).quality(80).auto('format').fit('max').url()} 1440w
 									`}
-								src={urlFor(nextWork.image).width(800).auto('format').url()}
+								src={urlFor(nextWork.image).dpr(2).quality(80).auto('format').fit('max').url()}
 								sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 								alt={nextWork.title}
 								revealOptions={{

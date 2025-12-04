@@ -4,6 +4,7 @@
 	import type { Work } from '$lib/types/post'; // Import your Work type
 	import { inView } from '$lib/actions/inView';
 	import { onMount } from 'svelte';
+	import { m } from '$lib/paraglide/messages';
 
 	let lang;
 
@@ -62,10 +63,9 @@
 		{:else if posts && posts.length > 0}
 			<div class="post-container">
 				{#each posts as post, index (post._id)}
-					<a
+					<div
 						class="post-card opacity-0 translate-y-10 transition-all duration-1000 ease-out"
 						use:intersectionObserver={index}
-						href="{lang}works/{post.slug}"
 						data-sveltekit-reload
 					>
 						<div class="flex flex-col mt-8 md:mt-0 justify-between gap-4 md:gap-5 md:w-[30%] pr-5">
@@ -74,30 +74,38 @@
 								{#if post.description}
 									<p class="font-medium text-xl tracking-[.8]">{post.description}</p>
 								{/if}
-								<button class="btn cursor-pointer">View</button>
+								<a href="{lang}works/{post.slug}" class="btn cursor-pointer"
+									>{m['home_page.view']()}</a
+								>
 							</div>
 						</div>
 						{#if post.image}
-							<div class="banner-wrap">
+							<a href="{lang}works/{post.slug}" class="banner-wrap">
 								<RevealImage
 									className="project-banner"
 									srcset={`
-										${urlFor(post.image).width(480).auto('format').url()} 480w,
-										${urlFor(post.image).width(768).auto('format').url()} 768w,
-										${urlFor(post.image).width(1024).auto('format').url()} 1024w,
-										${urlFor(post.image).width(1440).auto('format').url()} 1440w
+										${urlFor(post.image).width(480).dpr(2).quality(80).auto('format').fit('max').url()} 480w,
+										${urlFor(post.image).width(768).dpr(2).quality(80).auto('format').fit('max').url()} 768w,
+										${urlFor(post.image).width(1024).dpr(2).quality(80).auto('format').fit('max').url()} 1024w,
+										${urlFor(post.image).width(1440).dpr(2).quality(80).auto('format').fit('max').url()} 1440w
 									`}
 									sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
-									src={urlFor(post.image).width(800).auto('format').url()}
+									src={urlFor(post.image)
+										.width(800)
+										.dpr(2)
+										.quality(80)
+										.auto('format')
+										.fit('max')
+										.url()}
 									alt={post.title}
 									revealOptions={{
 										duration: 1,
 										delay: index * 100
 									}}
 								/>
-							</div>
+							</a>
 						{/if}
-					</a>
+					</div>
 				{/each}
 			</div>
 		{:else}

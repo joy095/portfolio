@@ -1,4 +1,55 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"example_message": "Hello world {username}"
+	"example_message": "Hello world {username}",
+	"test": "This is a test message.",
+	"nav_links": {
+		"about": "About",
+		"blog": "Blog",
+		"contact": "Contact",
+		"description": "Explore the portfolio of Joy Karmakar, a web developer and designer specializing in building beautiful, functional websites using modern technologies."
+	},
+	"home_page": {
+		"title": "Joy Karmakar - Full Stack Developer & UI/UX Designer",
+		"description": "Portfolio of Joy Karmakar - Full Stack Developer specializing in React, Svelte, Node.js and modern web technologies. Explore my projects and experience.",
+		"feature_work": "Featured work",
+		"scroll_down": "Scroll Down",
+		"certifications": "Certifications & Achievements",
+		"view": "View",
+		"all_works": "All works",
+		"view_credential": "View Credential",
+		"download_cv": "Download my CV",
+		"about": "About",
+		"experience": "Experience",
+		"work_desc": "Work created for companies across different industries, solving real problems with clean engineering and thoughtful design.",
+		"about_description": "I'm a developer who enjoys building fast, reliable, and scalable applications. I work across both frontend and backend, focusing on clean architecture, performance, and great user experience."
+	},
+	"home_hero": {
+		"text": "I’m a developer who builds scalable, and user-focused web applications, both frontend and backend using modern tools and clean architectures.",
+		"text-2": "A developer",
+		"text-3": "Build Better"
+	},
+	"blog_page": {
+		"title": "Blog",
+		"meta_title": "Software Engineering Insights, Tutorials, and Articles",
+		"description": "Explore the latest software engineering insights, tutorials, and in-depth articles."
+	},
+	"contact_page": {
+		"title": "Contact",
+		"description": "Reach out to us via email or form.",
+		"h1": "I'm looking forward to hearing from you! If you prefer not to fill out forms, feel free to email me directly and let's talk about the next big thing!"
+	},
+	"contact_form": {
+		"name": "Name",
+		"email": "Email",
+		"subject": "Subject",
+		"message": "Message",
+		"message_placeholder": "Share Message",
+		"phone": "Phone",
+		"phone_error": "Please enter a valid phone number",
+		"submit": "Submit",
+		"success": "Message sent successfully!",
+		"email_error": "Please enter a valid email address",
+		"error": "Failed to send message. Please try again.",
+		"name_placeholder": "Ex. John Doe"
+	}
 }

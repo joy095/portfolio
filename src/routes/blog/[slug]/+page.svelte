@@ -21,7 +21,8 @@
 		slug?: { current: string };
 		publishedAt?: string;
 		content?: any[];
-		mainImage?: { _type: string; asset?: { _ref: string }; alt?: string };
+		mainImage?: { _type: string; asset?: { _ref: string } };
+		alt?: string;
 		author?: Author;
 		categories?: Category[];
 		tags?: string[] | null;
@@ -103,14 +104,20 @@
 					<div class="hero-image" in:fade={{ duration: 1000 }}>
 						<img
 							srcset={`
-										${urlFor(data.post.mainImage).width(480).auto('format').url()} 480w,
-										${urlFor(data.post.mainImage).width(768).auto('format').url()} 768w,
-										${urlFor(data.post.mainImage).width(1024).auto('format').url()} 1024w,
-										${urlFor(data.post.mainImage).width(1440).auto('format').url()} 1440w
-									`}
-							src={urlFor(data.post.mainImage).width(800).auto('format').url()}
+								${urlFor(data.post.mainImage).width(480).dpr(2).quality(80).auto('format').fit('max').url()} 480w,
+								${urlFor(data.post.mainImage).width(768).dpr(2).quality(80).auto('format').fit('max').url()} 768w,
+								${urlFor(data.post.mainImage).width(1024).dpr(2).quality(80).auto('format').fit('max').url()} 1024w,
+								${urlFor(data.post.mainImage).width(1440).dpr(2).quality(80).auto('format').fit('max').url()} 1440w
+  `}
+							src={urlFor(data.post.mainImage)
+								.width(800)
+								.dpr(2)
+								.quality(80)
+								.auto('format')
+								.fit('max')
+								.url()}
 							sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
-							alt={data.post.mainImage.alt || data.post.title || 'Post Image'}
+							alt={data.post.alt || 'Post Image'}
 							class="w-full h-auto object-cover rounded-xl shadow-lg"
 						/>
 					</div>

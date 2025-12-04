@@ -11,7 +11,8 @@
 		"check:watch": "bunx svelte-kit sync && bunx svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "bunx eslint . && bunx prettier --check .",
 		"format": "bunx prettier --write .",
-		"machine-translate": "inlang machine translate --project project.inlang"
+		"machine-translate": "inlang machine translate --project project.inlang",
+		"paraglide": "paraglide-js build"
 	},
 	"files": [
 		"dist",

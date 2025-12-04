@@ -10,7 +10,7 @@ export default defineConfig({
 		paraglideVitePlugin({
 			project: './project.inlang',
 			outdir: './src/lib/paraglide',
-			strategy: ['cookie', 'preferredLanguage', 'url', 'baseLocale'],
+			strategy: ['cookie', 'url', 'preferredLanguage', 'baseLocale'],
 			disableAsyncLocalStorage: true
 		}),
 		tailwindcss(),

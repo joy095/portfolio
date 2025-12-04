@@ -5,7 +5,8 @@
 	import { headerAnimationComplete } from '$lib/stores/store';
 	import { smoothScrollToSection } from '$lib/scroll';
 	import { inView } from '$lib/actions/inView';
-	import { locales, localizeUrl, setLocale } from '$lib/paraglide/runtime.js';
+	import { locales, localizeUrl, setLocale, localizeHref } from '$lib/paraglide/runtime.js';
+	import { m } from '$lib/paraglide/messages';
 
 	export let lang;
 
@@ -148,7 +149,7 @@
 							on:focus={() => handleHover('about')}
 							class:hovered={hoveredButtons['about']}
 						>
-							About
+							{m['nav_links.about']()}
 						</a>
 					</li>
 					<li class="nav-links" in:fly={{ y: 20, duration: 800, delay: 400, opacity: 0 }}>
@@ -159,7 +160,7 @@
 							on:focus={() => handleHover('blog')}
 							class:hovered={hoveredButtons['blog']}
 						>
-							Blog
+							{m['nav_links.blog']()}
 						</a>
 					</li>
 					<li class="nav-links" in:fly={{ y: 20, duration: 800, delay: 600, opacity: 0 }}>
@@ -170,7 +171,7 @@
 							on:focus={() => handleHover('contact')}
 							class:hovered={hoveredButtons['contact']}
 						>
-							Contact
+							{m['nav_links.contact']()}
 						</a>
 					</li>
 				</ul>
@@ -321,7 +322,7 @@
 								<span
 									class="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500"
 								></span>
-								About
+								{m['nav_links.about']()}
 							</a>
 						</li>
 						<li>
@@ -333,7 +334,7 @@
 								<span
 									class="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500"
 								></span>
-								Blog
+								{m['nav_links.blog']()}
 							</a>
 						</li>
 						<li>
@@ -345,7 +346,7 @@
 								<span
 									class="w-1.5 h-1.5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500"
 								></span>
-								Contact
+								{m['nav_links.contact']()}
 							</a>
 						</li>
 					</ul>
