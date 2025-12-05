@@ -2,7 +2,7 @@ import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity';
 import { error } from '@sveltejs/kit';
 
-export const prerender = true;
+// export const prerender = true;
 
 export const load: PageServerLoad = async ({ parent }) => {
 	const { lang } = await parent(); // get active locale from layout

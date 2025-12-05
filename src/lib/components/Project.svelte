@@ -8,8 +8,12 @@
 
 	let lang;
 
+	console.log('lang', lang);
+
 	export let posts: Work[] = []; // Initialize as empty array to avoid undefined errors
 	export let error: Error | null = null; // Initialize as null
+
+	// console.log('posts', posts);
 
 	function intersectionObserver(node: HTMLElement, index: number) {
 		const observer = new IntersectionObserver(

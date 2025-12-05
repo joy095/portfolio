@@ -13,10 +13,10 @@
 	import Footer from '$lib/components/Footer.svelte';
 
 	import { dev } from '$app/environment';
-	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+	// import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	import { page } from '$app/state';
 
-	injectAnalytics({ mode: dev ? 'development' : 'production' });
+	// injectAnalytics({ mode: dev ? 'development' : 'production' });
 
 	let numberOfLines = 11;
 	let showSplash = false; // Initialize to false by default on SSR

@@ -5,12 +5,13 @@
 	import Experience from '$lib/components/Experience.svelte';
 
 	import type { PageData } from './$types';
-	import { smoothScrollToSection } from '$lib/scroll';
 	import { onMount } from 'svelte';
 	import { m } from '$lib/paraglide/messages';
 
 	export let data: PageData;
 	const { posts, error, lang } = data;
+
+	console.log('lang', lang);
 
 	const meta = {
 		title: `${m['home_page.title']()}`,
@@ -74,20 +75,9 @@
 	</div>
 
 	<div id="project"></div>
-{/if} -->
+{/if}
 
-<!-- <Project {lang} {posts} {error} /> -->
-
-<!-- {#if contentVisible}
-	<div class="container-auto text-center mt-28">
-		<a
-			href="{lang}/works"
-			class="inline-flex items-center px-8 py-4 bg-gray-900 text-white text-lg font-medium rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-gray-300"
-		>
-			{m['home_page.all_works']()}
-		</a>
-	</div>
-{/if} -->
+<Project {lang} {posts} {error} /> -->
 
 <About />
 

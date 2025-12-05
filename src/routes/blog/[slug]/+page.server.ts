@@ -3,7 +3,7 @@ import { client } from '$lib/sanity';
 import { createImageUrlBuilder } from '@sanity/image-url';
 import { error } from '@sveltejs/kit';
 
-export const prerender = true;
+// export const prerender = true;
 
 // Pre-render all slugs
 export async function entries() {

@@ -7,11 +7,11 @@ const config = {
 
 	kit: {
 		adapter: adapter()
-	},
-
-	prerender: {
-		entries: ['*']
 	}
+
+	// prerender: {
+	// 	entries: ['*']
+	// }
 };
 
 export default config;
