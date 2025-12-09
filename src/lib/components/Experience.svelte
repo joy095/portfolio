@@ -45,7 +45,7 @@
 						</tr>
 						<tr>
 							<td>Skkyee</td>
-							<td>Web Development Intern</td>
+							<td>Web Developer Intern</td>
 							<td>Jan 2024 - Apr 2024</td>
 						</tr>
 						<tr>

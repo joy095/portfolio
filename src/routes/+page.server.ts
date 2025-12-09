@@ -2,11 +2,13 @@
 import { client } from '$lib/sanity';
 import type { Work } from '$lib/types/post';
 
-export async function load() {
+export async function load({ parent }) {
+	const { lang } = await parent(); // get active locale from layout
+
 	try {
 		const postsQuery = `*[_type == "work"] | order(serial asc)[0..3] {
             _id,
-            title,
+            "title": title[$lang],
             "slug": slug.current,
             image {
                 asset->{
@@ -14,10 +16,10 @@ export async function load() {
                     url
                 }
             },
-            description,
+            "description": description[$lang],
             serial,
         }`;
-		const posts: Work[] = await client.fetch<Work[]>(postsQuery);
+		const posts: Work[] = await client.fetch<Work[]>(postsQuery, { lang });
 
 		return {
 			posts

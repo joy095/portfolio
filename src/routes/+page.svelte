@@ -7,11 +7,10 @@
 	import type { PageData } from './$types';
 	import { onMount } from 'svelte';
 	import { m } from '$lib/paraglide/messages';
+	import { smoothScrollToSection } from '$lib/scroll';
 
 	export let data: PageData;
 	const { posts, error, lang } = data;
-
-	console.log('lang', lang);
 
 	const meta = {
 		title: `${m['home_page.title']()}`,
@@ -52,7 +51,7 @@
 
 <Hero />
 
-<!-- {#if contentVisible}
+{#if contentVisible}
 	<div class="container-auto">
 		<div class="flex justify-between border-b-2 border-black/80 pb-3">
 			<p class="font-medium text-2xl leading-[1.6] tracking-tighter">
@@ -77,7 +76,7 @@
 	<div id="project"></div>
 {/if}
 
-<Project {lang} {posts} {error} /> -->
+<!-- <Project {lang} {posts} {error} /> -->
 
 <About />
 
