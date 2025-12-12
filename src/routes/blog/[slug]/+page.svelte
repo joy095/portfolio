@@ -100,8 +100,15 @@
 		{:else if data.post}
 			<!-- Hero Section -->
 			<section class="hero">
+				<h1
+					class="hero-title font-display text-[3.5rem] md:text-[5rem] leading-tight tracking-tight text-center"
+					in:fly={{ duration: 800, y: 20, delay: 200 }}
+				>
+					{data.post.title || 'Untitled Post'}
+				</h1>
+
 				{#if data.post.mainImage?.asset}
-					<div class="hero-image" in:fade={{ duration: 1000 }}>
+					<div class="hero-image mt-10" in:fade={{ duration: 1000 }}>
 						<img
 							srcset={`
 								${urlFor(data.post.mainImage).width(480).dpr(2).quality(80).auto('format').fit('max').url()} 480w,
@@ -122,12 +129,6 @@
 						/>
 					</div>
 				{/if}
-				<h1
-					class="hero-title font-display text-[3.5rem] md:text-[5rem] leading-tight tracking-tight text-center"
-					in:fly={{ duration: 800, y: 20, delay: 200 }}
-				>
-					{data.post.title || 'Untitled Post'}
-				</h1>
 			</section>
 
 			<!-- Main Content -->
