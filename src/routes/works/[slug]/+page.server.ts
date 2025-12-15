@@ -4,8 +4,6 @@ import type { PageServerLoad } from './$types';
 import { client } from '$lib/sanity';
 
 export const load: PageServerLoad = async ({ params, parent }) => {
-	console.log('Slug', params.slug);
-
 	// Get current language from layout
 	const { lang } = await parent();
 
@@ -13,7 +11,7 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 		const query = `{
 			// Current work item
 			"current": *[_type == "work" && slug.current == $slug][0]{
-				"title": coalesce(title[$lang], title.en),
+				"title": title[$lang],
 				"slug": slug.current,
 				serial,
 
@@ -32,20 +30,18 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 			},
 
 			// Next work (with localization)
-			"next": *[
-				_type == "work" && 
-				serial > *[_type == "work" && slug.current == $slug][0].serial
-			] | order(serial asc)[0]{
-				"title": coalesce(title[$lang], title.en),
-				"slug": slug.current,
-				image,
-				"description": coalesce(description[$lang], description.en),
-			}
+			// "next": *[
+			// 	_type == "work" && 
+			// 	serial > *[_type == "work" && slug.current == $slug][0].serial
+			// ] | order(serial asc)[0]{
+			// 	"title": coalesce(title[$lang], title.en),
+			// 	"slug": slug.current,
+			// 	image,
+			// 	"description": coalesce(description[$lang], description.en),
+			// }
 		}`;
 
-		console.log('query', query);
-
-		const { current, next } = await client.fetch(query, {
+		const { current } = await client.fetch(query, {
 			slug: params.slug,
 			lang
 		});
@@ -55,8 +51,7 @@ export const load: PageServerLoad = async ({ params, parent }) => {
 		}
 
 		return {
-			work: current,
-			nextWork: next
+			work: current
 		};
 	} catch (err) {
 		console.error('Error loading work:', err);

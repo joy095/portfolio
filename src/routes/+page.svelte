@@ -76,7 +76,7 @@
 	<div id="project"></div>
 {/if}
 
-<!-- <Project {lang} {posts} {error} /> -->
+<Project {lang} {posts} {error} />
 
 <About />
 

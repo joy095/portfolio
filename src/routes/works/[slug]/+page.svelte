@@ -7,53 +7,41 @@
 	import RevealImage from '$lib/components/RevealImage.svelte';
 	import { fly } from 'svelte/transition';
 
-	const scrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth'
-		});
-	};
-
 	export let data: {
 		work: Work;
-		nextWork: NextWork | null;
-		meta: {
+		nextWork?: NextWork | null;
+		meta?: {
 			title: string;
 			description: string;
 			image: any;
 			url: string;
 			twitterHandle: string;
 		};
+		lang: 'en' | 'de';
 	};
 
-	let { work, nextWork, meta } = data;
+	// Route data
+	let work = data.work;
+	let nextWork = data.nextWork ?? null;
+
+	// SAFE META (never undefined)
+	$: meta = data.meta ?? {
+		title: work?.title ?? '',
+		description: work?.description ?? '',
+		image: work?.image,
+		url: '',
+		twitterHandle: ''
+	};
+
+	const scrollToTop = () => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	};
 
 	const handleWorkNavigation = async (slug: string, e: MouseEvent) => {
 		e.preventDefault();
-		isLoading.set(true);
-
-		try {
-			await goto(`/works/${slug}`, {
-				replaceState: false,
-				invalidateAll: true
-			});
-
-			// Update local state with new data after navigation
-			work = data.work;
-			nextWork = data.nextWork;
-		} catch (err) {
-			console.error('Navigation failed:', err);
-			error.set(err instanceof Error ? err.message : 'Navigation failed');
-		} finally {
-			isLoading.set(false);
-		}
+		await goto(`/works/${slug}`);
+		scrollToTop();
 	};
-
-	// Update state when data changes
-	$: {
-		work = data.work;
-		nextWork = data.nextWork;
-	}
 </script>
 
 <svelte:head>
@@ -63,17 +51,17 @@
 
 	<meta property="og:title" content={meta.title} />
 	<meta property="og:description" content={meta.description} />
-	<meta property="og:url" content={meta.url} />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content={urlFor(meta.image).url()} />
+	{#if meta.image}
+		<meta property="og:image" content={urlFor(meta.image).url()} />
+	{/if}
 
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={meta.title} />
 	<meta name="twitter:description" content={meta.description} />
-	<meta name="twitter:image" content={urlFor(meta.image).url()} />
-	<meta name="twitter:creator" content={meta.twitterHandle} />
-
-	<link rel="canonical" href={meta.url} />
+	{#if meta.image}
+		<meta name="twitter:image" content={urlFor(meta.image).url()} />
+	{/if}
 </svelte:head>
 
 {#if $isLoading}
@@ -245,7 +233,7 @@
 		</div>
 	</article>
 
-	{#if nextWork}
+	<!-- {#if nextWork}
 		<div class="container-auto mb-20">
 			<div class="flex justify-between pb-3 relative overflow-hidden">
 				<p
@@ -302,7 +290,7 @@
 				</a>
 			</div>
 		</div>
-	{/if}
+	{/if} -->
 {:else}
 	<div class="flex justify-center items-center min-h-[500px]">
 		<p class="text-gray-500">Work not found.</p>

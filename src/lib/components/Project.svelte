@@ -5,10 +5,9 @@
 	import { inView } from '$lib/actions/inView';
 	import { onMount } from 'svelte';
 	import { m } from '$lib/paraglide/messages';
+	import { goto } from '$app/navigation';
 
-	let lang;
-
-	console.log('lang', lang);
+	export let lang: string;
 
 	export let posts: Work[] = []; // Initialize as empty array to avoid undefined errors
 	export let error: Error | null = null; // Initialize as null
@@ -78,13 +77,13 @@
 								{#if post.description}
 									<p class="font-medium text-xl tracking-[.8]">{post.description}</p>
 								{/if}
-								<a href="{lang}works/{post.slug}" class="btn cursor-pointer"
+								<a on:click={() => goto(`/${lang}/works/${post.slug}`)} class="btn cursor-pointer"
 									>{m['home_page.view']()}</a
 								>
 							</div>
 						</div>
 						{#if post.image}
-							<a href="{lang}works/{post.slug}" class="banner-wrap">
+							<a href="/{lang}/works/{post.slug}" class="banner-wrap">
 								<RevealImage
 									className="project-banner"
 									srcset={`
