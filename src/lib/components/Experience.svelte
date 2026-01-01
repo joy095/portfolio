@@ -44,11 +44,6 @@
 							<td>Apr 2024 - Jan 2025</td>
 						</tr>
 						<tr>
-							<td>Skkyee</td>
-							<td>Web Developer Intern</td>
-							<td>Jan 2024 - Apr 2024</td>
-						</tr>
-						<tr>
 							<td>Acceleratron</td>
 							<td>Web Developer</td>
 							<td>Dec 2023 - Jan 2024</td>
