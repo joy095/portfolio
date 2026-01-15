@@ -22,14 +22,6 @@
 			issuer: 'aws'
 		},
 		{
-			id: 'a69958cf2207',
-			description: 'Python (Basic)',
-			date: 'March 2024',
-			skills: ['Python', 'Basic Syntax', 'Data Types', 'Functions'],
-			link: 'https://www.hackerrank.com/certificates/a69958cf2207',
-			issuer: 'hackerrank'
-		},
-		{
 			id: 'e8616d3e54b8',
 			description: 'Frontend Developer (React)',
 			date: 'Feb 2024',
