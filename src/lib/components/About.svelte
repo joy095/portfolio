@@ -14,6 +14,14 @@
 			issuer: 'hackerrank'
 		},
 		{
+			id: '740558c3-6948-4527-9a40-ebf6ea5a2d55',
+			description: 'AWS Cloud 101',
+			date: 'Jan 2026',
+			skills: ['AWS', 'Basic Cloud Computing', 'S3', 'Lambda', 'EC2'],
+			link: 'https://www.credly.com/badges/740558c3-6948-4527-9a40-ebf6ea5a2d55/public_url',
+			issuer: 'aws'
+		},
+		{
 			id: 'a69958cf2207',
 			description: 'Python (Basic)',
 			date: 'March 2024',
@@ -182,6 +190,12 @@
 										class="h-7 w-auto text-gray-900"
 										src="/icons/webflow-icon.svg"
 										alt="Webflow Logo"
+									/>
+								{:else if cert.issuer === 'aws'}
+									<img
+										class="h-7 w-auto text-gray-900"
+										src="/icons/aws-icon.svg"
+										alt="aws Logo"
 									/>
 								{:else}
 									<img class="h-7 w-auto" src="/icons/hacker-rank-logo.svg" alt="HackerRank Logo" />
