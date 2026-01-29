@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages';
-	import { home_page_view_credential } from '$lib/paraglide/messages/en';
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 

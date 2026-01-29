@@ -121,7 +121,7 @@
 					<div class="h-[35vh] md:h-[90vh]">
 						<ParallaxScroll speed={0.2}>
 							<img
-								loading="lazy"
+								loading="eager"
 								srcset={`
 										${urlFor(work.image).width(480).auto('format').url()} 480w,
 										${urlFor(work.image).width(768).auto('format').url()} 768w,

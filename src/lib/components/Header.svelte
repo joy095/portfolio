@@ -5,10 +5,13 @@
 	import { headerAnimationComplete } from '$lib/stores/store';
 	import { smoothScrollToSection } from '$lib/scroll';
 	import { inView } from '$lib/actions/inView';
-	import { locales, localizeUrl, setLocale, localizeHref } from '$lib/paraglide/runtime.js';
+	import { locales, localizeUrl, setLocale, getLocale } from '$lib/paraglide/runtime.js';
 	import { m } from '$lib/paraglide/messages';
 
 	export let lang;
+	// derive current language from runtime (fallback to prop if provided)
+	let currentLang: string;
+	$currentLang;
 
 	let currentTime: string;
 	let timezone: string;
@@ -22,6 +25,15 @@
 	let isMobile = false;
 
 	const toggle = () => (open = !open);
+	
+	// determine current language from runtime on mount
+	onMount(() => {
+		try {
+			currentLang = getLocale();
+		} catch {
+			currentLang = lang ?? 'en';
+		}
+	});
 
 	const close = () => (open = false);
 
@@ -215,7 +227,7 @@
 						</svg>
 
 						<span class="font-semibold text-gray-800 hidden sm:inline">
-							{lang.toUpperCase()}
+							{(currentLang ?? lang ?? 'en').toUpperCase()}
 						</span>
 
 						<!-- Chevron -->
@@ -242,9 +254,9 @@
 								<button
 									on:click|stopPropagation={() => handleSelect(localeOption)}
 									class="w-full text-left px-3 sm:px-5 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors
-            {locales.toString() === localeOption
-										? 'bg-indigo-50 text-indigo-700'
-										: 'text-gray-700 hover:bg-gray-100'}"
+									{(currentLang ?? lang ?? 'en') === localeOption
+									? 'bg-indigo-50 text-indigo-700'
+									: 'text-gray-700 hover:bg-gray-100'}"
 								>
 									{localeOption.toUpperCase()}
 								</button>

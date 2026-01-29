@@ -126,6 +126,7 @@
 							sizes="(max-width: 640px) 90vw, (max-width: 1024px) 70vw, 50vw"
 							alt={data.post.alt || 'Post Image'}
 							class="w-full h-auto object-cover rounded-xl shadow-lg"
+							loading="eager"
 						/>
 					</div>
 				{/if}
