@@ -50,7 +50,6 @@
 </script>
 
 <main class="background" style="--number-of-lines: {numberOfLines}">
-	<Analytics />
 	<div class="mt-20">
 		<slot />
 	</div>
