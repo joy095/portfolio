@@ -12,10 +12,12 @@
 	import { headerAnimationComplete } from '$lib/stores/store';
 	import Footer from '$lib/components/Footer.svelte';
 
-	import { dev } from '$app/environment';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 
 	import { page } from '$app/state';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
+	injectSpeedInsights();
 
 	injectAnalytics();
 	// injectAnalytics({
