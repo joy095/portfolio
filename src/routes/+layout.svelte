@@ -14,9 +14,14 @@
 
 	import { dev } from '$app/environment';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+
 	import { page } from '$app/state';
 
-	injectAnalytics({ mode: dev ? 'development' : 'production' });
+	injectAnalytics();
+	// injectAnalytics({
+	// 	mode: dev ? 'development' : 'production',
+	// 	debug: true
+	// });
 
 	let numberOfLines = 11;
 	let showSplash = false; // Initialize to false by default on SSR
@@ -45,6 +50,7 @@
 </script>
 
 <main class="background" style="--number-of-lines: {numberOfLines}">
+	<Analytics />
 	<div class="mt-20">
 		<slot />
 	</div>
